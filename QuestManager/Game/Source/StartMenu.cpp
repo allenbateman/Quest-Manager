@@ -146,7 +146,6 @@ bool StartMenu::OnGuiMouseClickEvent(GuiControl* control)
 	{
 		app->levelManagement->gameState = LevelManagement::SCENE1;
 		app->levelManagement->loadLevel = false;
-
 	}
 	else if (control->id == exitButton->id)
 	{
