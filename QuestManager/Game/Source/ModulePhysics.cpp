@@ -3,12 +3,10 @@
 #include "Render.h"
 #include "ModulePhysics.h"
 #include "Scene1.h"
-#include "Scene2.h"
 #include "Point.h"
 #include "math.h"
 #include "Log.h"
 #include "Globals.h"
-#include "Entity.h"
 
 //#ifdef _DEBUG
 //#pragma comment( lib, "Box2D/libx86/Debug/Box2D.lib" )

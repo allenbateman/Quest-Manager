@@ -5,7 +5,6 @@
 #include "List.h"
 #include "Point.h"
 #include "ModulePhysics.h"
-#include "Entity.h"
 
 #include "PugiXml\src\pugixml.hpp"
 

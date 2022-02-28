@@ -4,16 +4,10 @@
 #include "Render.h"
 #include "Textures.h"
 #include "Audio.h"
-#include "LevelManagement.h"
 #include "FadeToBlack.h"
-#include "Intro.h"
-#include "StartMenu.h"
 #include "Scene1.h"
-#include "Scene2.h"
-#include "GameOver.h"
 #include "Map.h"
 #include "ModulePhysics.h"
-#include "ModuleEntities.h"
 #include "GuiManager.h"
 #include "ModuleFonts.h"
 
@@ -34,18 +28,12 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	render = new Render(true);
 	tex = new Textures(true);
 	audio = new Audio(true);
-	levelManagement = new LevelManagement(true);
 	physics = new ModulePhysics(true);
 	guiManager = new GuiManager(true);
 	fonts = new ModuleFonts(true);
 	map = new Map(true);
-	entities = new ModuleEntities(true);
 	fade = new FadeToBlack(true);
-	intro = new Intro(true);
-	start = new StartMenu(false);
-	scene1 = new Scene1(false);
-	scene2 = new Scene2(false);
-	gameOver = new GameOver(false);
+	scene1 = new Scene1(true);
 
 
 	// Ordered for awake / Start / Update
@@ -56,23 +44,13 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(map);
 	AddModule(physics);
-	AddModule(guiManager);
 	AddModule(fonts);
-
-	
-	AddModule(levelManagement);
+	AddModule(guiManager);
 
 
 	AddModule(fade);
 
-	AddModule(intro);
-	AddModule(start);
 	AddModule(scene1);
-	AddModule(scene2);
-	AddModule(gameOver);
-
-	
-	AddModule(entities);
 
 	// Render last to swap buffer
 	AddModule(render);

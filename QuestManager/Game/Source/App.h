@@ -16,16 +16,10 @@ class Input;
 class Render;
 class Textures;
 class Audio;
-class LevelManagement;
 class FadeToBlack;
-class Intro;
-class StartMenu;
 class Scene1;
-class Scene2;
-class GameOver;
 class Map;
 class ModulePhysics;
-class ModuleEntities;
 class GuiManager;
 class ModuleFonts;
 
@@ -101,16 +95,10 @@ public:
 	Render* render;
 	Textures* tex;
 	Audio* audio;
-	LevelManagement* levelManagement;
 	FadeToBlack* fade;
-	Intro* intro;
-	StartMenu* start;
 	Scene1* scene1;
-	Scene2* scene2;
-	GameOver* gameOver;
 	Map* map;
 	ModulePhysics* physics;
-	ModuleEntities* entities;
 	GuiManager* guiManager;
 	ModuleFonts* fonts;
 	

@@ -9,11 +9,7 @@
 #include "Scene1.h"
 #include "Map.h"
 #include "ModulePhysics.h"
-#include "LevelManagement.h"
-#include "ModuleEntities.h"
 #include "player.h"
-#include "Musher.h"
-#include "Bat.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -42,11 +38,6 @@ bool Scene1::Start()
 	app->physics->Start();
 	app->map->Load("level1.tmx");
 	app->audio->PlayMusic("Assets/audio/music/level1.wav");
-
-	app->levelManagement->KeysToTake = 2;
-
-	//Spawn all entities if not load request
-	app->entities->Start();
 
 
 	settingsPanel = new GuiPanel(false);
@@ -108,17 +99,6 @@ bool Scene1::Start()
 
 	palyerUI = app->tex->Load("Assets/Spritesx16/Sidebar.png");
 	timer = 120000;//2min in millis
-	app->entities->coinsCollected = 0;
-
-
-	if (app->levelManagement->loadLevel)
-	{
-		app->LoadGameRequest();
-		app->levelManagement->loadLevel = false;
-		app->levelManagement->gameState = app->levelManagement->SCENE1;
-		app->levelManagement->currentScene = this;
-		return true;
-	}
 
 
 
@@ -133,8 +113,6 @@ bool Scene1::PreUpdate()
 		pausePanel->Active = !pausePanel->Active;
 
 
-	if (app->entities->playerInstance->isGodmodeOn) app->entities->playerInstance->lives = 3;
-
 	return true;
 }
 
@@ -148,14 +126,6 @@ bool Scene1::Update(float dt)
 	if(app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN || app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		app->SaveGameRequest();
 
-	if (app->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
-	{
-		iPoint p;
-		p.x = app->entities->checkPoint.getLast()->data->position.x;
-		p.y = app->entities->checkPoint.getLast()->data->position.y;
-
-		app->entities->playerInstance->SetPosition(p);
-	}
 
 	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
 				   app->map->mapData.width, app->map->mapData.height,
@@ -166,11 +136,6 @@ bool Scene1::Update(float dt)
 	settingsPanel->Update(dt);
 
 	timer -= dt;
-
-	if (timer <= 0)
-	{
-		app->levelManagement->gameState = app->levelManagement->GameState::GAME_OVER;
-	}
 
 
 	return true;
@@ -192,29 +157,14 @@ bool Scene1::PostUpdate()
 	//lives
 	r = { 0,262,32,32 };
 	int x = 49, y = 4;
-	for (int i = 0; i < app->entities->playerInstance->lives; i++)
-	{
-		app->render->DrawTexture(app->guiManager->UItexture, x + (x*i), y, &r);
-	}
 
 	r = {57,262,24,32};
-	//coins 
-		app->render->DrawTexture(app->guiManager->UItexture,1089 , y, &r);
 
-		std::string s = std::to_string(app->entities->coinsCollected);
-		const char* txt = s.c_str(); 
-		app->fonts->BlitText(1121, 4, 1, txt);
-	//keys
-	r = { 33,262,23,32 };
-		app->render->DrawTexture(app->guiManager->UItexture, 1177 , y, &r);
-		s = std::to_string(app->entities->playerInstance->keysCollected);
-		txt = s.c_str(); 
-		app->fonts->BlitText(1209, 4, 1, txt);
 	//timer 
 		int seconds =(int) timer / 1000;
 		int min = seconds / 60;
-		s = std::to_string(min);
-		txt = s.c_str();
+		std::string  s = std::to_string(min);
+		const char*  txt = s.c_str();
 		app->fonts->BlitText(987, 4, 1, txt);		
 		app->fonts->BlitText(1000, 4, 1, ":");
 
@@ -235,7 +185,6 @@ bool Scene1::CleanUp()
 {
 	LOG("Disable scene 1");
 	app->map->CleanUp();
-	app->entities->CleanUp();
 	app->physics->CleanUp();
 	app->audio->StopMusic();
 	return true;
@@ -252,14 +201,12 @@ void Scene1::Disable()
 	LOG("Disable scene 1");
 	app->map->CleanUp();
 	app->physics->Disable();
-	app->entities->Disable();
 }
 
 bool Scene1::LoadState(pugi::xml_node& data)
 {
 	bool ret = true;
 	pugi::xml_node level = data.child("level1");
-	app->levelManagement->KeysToTake = level.attribute("keys_to_collect").as_int();
 	return ret;
 }
 
@@ -267,8 +214,6 @@ bool Scene1::SaveState(pugi::xml_node& data) const
 {
 	bool ret = true;
 	pugi::xml_node level = data.append_child("level1");
-
-	level.append_attribute("keys_to_collect") = app->levelManagement->KeysToTake;
 
 	return ret;
 }
@@ -279,11 +224,6 @@ bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
 	{
 		pausePanel->Active = false;
 
-	}
-	else if (control->id == backToTitleButton->id)
-	{
-		app->entities->coinsCollected = 0;
-		app->levelManagement->gameState = app->levelManagement->START;
 	}
 	else if (control->id == exitButton->id)
 	{

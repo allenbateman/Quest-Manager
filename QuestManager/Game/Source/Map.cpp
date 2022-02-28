@@ -4,12 +4,8 @@
 #include "Textures.h"
 #include "Map.h"
 #include "ModulePhysics.h"
-#include "LevelManagement.h"
-#include "ModuleEntities.h"
-#include "Entity.h"
 #include "Player.h"
 #include "Scene1.h"
-#include "Scene2.h"
 #include<iostream>
 
 
@@ -649,140 +645,6 @@ bool Map::LoadObject(pugi::xml_node& node, Object* object)
 		p->value = objProperty.attribute("value").as_int();
 
 		object->properties.list.add(p);
-	}
-
-	return ret;
-}
-
-
-bool Map::SetMapColliders()
-{
-	bool ret = true;
-
-	ListItem<MapLayer*>* mapLayerItem;
-	mapLayerItem = mapData.layers.start;
-	LOG("--------!!!SETTING COLLIDERS!!!---------");
-	while (mapLayerItem != NULL) {
-
-		if (mapLayerItem->data->properties.GetProperty("Collider") == 1) {
-
-			for (int x = 0; x < mapLayerItem->data->width; x++)
-			{
-				for (int y = 0; y < mapLayerItem->data->height; y++)
-				{
-					int gid = mapLayerItem->data->Get(x, y);
-
-					if (gid > 0) {
-
-						TileSet* tileset = GetTilesetFromTileId(gid);
-
-						SDL_Rect r = tileset->GetTileRect(gid);
-						iPoint pos;
-						pos = MapToWorld(x,y);
-						PhysBody* pb = app->physics->CreateRectangle(pos.x + (tileset->tileWidth * 0.5f), pos.y + (tileset->tileHeight * 0.5f), tileset->tileWidth, tileset->tileHeight, b2_staticBody);
-						pb->color = { 0,0,0,255 };
-						pb->type = Collider_Type::GROUND;
-						app->physics->allPhysicBodies.add(pb);
-					}
-				}
-			}
-
-		}else if (mapLayerItem->data->properties.GetProperty("Death") == 1) {
-
-			for (int x = 0; x < mapLayerItem->data->width; x++)
-			{
-				for (int y = 0; y < mapLayerItem->data->height; y++)
-				{
-					int gid = mapLayerItem->data->Get(x, y);
-
-					if (gid > 0) {
-
-						TileSet* tileset = GetTilesetFromTileId(gid);
-
-						SDL_Rect r = tileset->GetTileRect(gid);
-						iPoint pos;
-						pos = MapToWorld(x, y);
-
-						PhysBody* pb = app->physics->CreateRectangle(pos.x + (tileset->tileWidth * 0.5f), pos.y + (tileset->tileHeight * 0.5f), tileset->tileWidth, tileset->tileHeight, b2_staticBody);
-						pb->color = { 255,50,50,255 };
-						pb->listener = app->levelManagement->currentScene;
-						pb->type = Collider_Type::DEATH;
-						app->physics->allPhysicBodies.add(pb);
-					}
-
-				}
-			}
-		}
-		mapLayerItem = mapLayerItem->next;
-	}
-		ListItem<ObjectLayer*>* objectLayer;
-	objectLayer = mapData.objectLayers.start;
-	LOG("--------!!!SETTING ENTITIES!!!---------");
-
-	while (objectLayer != NULL)
-	{
-	
-		LOG("SETTING %s LAYER COLLIDER...",objectLayer->data->name.GetString());
-		ListItem<Object*>* object;
-		object = objectLayer->data->objects.start;
-		while (object != NULL)
-		{
-
-			iPoint spawnPos;
-			spawnPos.x = object->data->x + object->data->width * 0.5;
-			//spawnPos.x = object->data->x;
-			spawnPos.y = object->data->y + object->data->height * 0.5; //tile height, the position tile is in the left-bot corner
-			//spawnPos.y = object->data->y; //tile height, the position tile is in the left-bot corner
-			
-
-			switch (object->data->type)
-			{
-	
-				case PLAYER:
-					app->entities->AddEntity(PLAYER, spawnPos);
-					LOG("SPAWN PLAYER...");
-					break;
-				case BAT:
-					app->entities->AddEntity(BAT, spawnPos);
-					LOG("SPAWN BAT...");
-					break;
-				case MUSHER:
-					app->entities->AddEntity(MUSHER, spawnPos);
-					LOG("SPAWN MUSHER...");
-					break;
-				case BIG_MUSHER:
-					app->entities->AddEntity(BIG_MUSHER, spawnPos);
-					LOG("SPAWN BIG MUSHER...");
-					break;
-				case GEM:
-					app->entities->AddEntity(Collider_Type::GEM, spawnPos);
-					LOG("SETTING GEM COLLIDER...");
-					break;
-				case KEY:
-					app->entities->AddEntity(Collider_Type::KEY, spawnPos);
-					LOG("SETTING KEY COLLIDER...");
-					break;
-				case POTION:
-					app->entities->AddEntity(Collider_Type::POTION, spawnPos);
-					LOG("SETTING POTION COLLIDER...");
-					break;
-				case PORTAL:
-					app->entities->AddEntity(Collider_Type::PORTAL, spawnPos);
-					LOG("SETTING PORTAL COLLIDER...");
-					break;
-				case CHECK_POINT:
-					app->entities->AddEntity(Collider_Type::CHECK_POINT, spawnPos);
-					LOG("SETTING CHECKPOINT COLLIDER...");
-					break;
-				default:
-					break;
-			}
-
-			object = object->next;
-
-		}
-
-		objectLayer = objectLayer->next;
 	}
 
 	return ret;
