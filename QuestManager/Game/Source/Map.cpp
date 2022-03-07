@@ -361,8 +361,6 @@ bool Map::Load(const char* filename)
 	//once the maps and layers are loaded, we set the physics properties
 	if (ret == true)
 	{
-		//here we will set ground and death colliders (water, spkies?)
-		SetMapColliders();
 	}
 
     mapLoaded = ret;
@@ -650,10 +648,6 @@ bool Map::LoadObject(pugi::xml_node& node, Object* object)
 	return ret;
 }
 
-void Map::ClearColliders()
-{
-	app->physics->allPhysicBodies.clear();
-}
 
 bool Map::LoadState(pugi::xml_node& data)
 {

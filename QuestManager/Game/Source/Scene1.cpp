@@ -36,9 +36,6 @@ bool Scene1::Awake()
 bool Scene1::Start()
 {
 	app->physics->Start();
-	app->map->Load("level1.tmx");
-	app->audio->PlayMusic("Assets/audio/music/level1.wav");
-
 
 	settingsPanel = new GuiPanel(false);
 	settingsPanel->bounds = { 510,0,266 ,382 };

@@ -1,2 +1,7 @@
 ﻿  ModuleFonts.cpp
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\External\SDL_ttf/Includes/SDL_ttf.h(34,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL.h': No such file or directory
+  Generando código
+  5 of 628 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    3 functions had inline decision re-evaluated but remain unchanged
+  Generación de código finalizada
+  Game.vcxproj -> C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Build\Release\Game.exe
