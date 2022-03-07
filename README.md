@@ -1,4 +1,4 @@
-# QuestManager
+# Quest Manager
 A simple quest manager using XML 
 
 ## Links
