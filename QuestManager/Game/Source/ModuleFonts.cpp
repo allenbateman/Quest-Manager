@@ -8,6 +8,9 @@
 
 ModuleFonts::ModuleFonts(bool isEnabled) : Module(isEnabled)
 {
+
+
+	TTF_Init();
 	TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24);
 }
 
