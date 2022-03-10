@@ -1,6 +1,8 @@
-﻿  Generando código
-  0 of 628 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+﻿  ModuleFonts.cpp
+LINK : warning LNK4075: se omite '/INCREMENTAL' debido a la especificación '/LTCG'
+  Generando código
+  1 of 636 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
-  Game.vcxproj -> C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Build\Release\Game.exe
+  Game.vcxproj -> C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Build\Release\Game.exe

@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "SDL\include\SDL_pixels.h"
+#include "External/SDL_ttf/include/SDL_ttf.h"
 
 #define MAX_FONTS 10
 #define MAX_FONT_CHARS 256
@@ -33,6 +34,10 @@ public:
 	// Destructor
 	~ModuleFonts();
 
+	bool Start();
+	bool CleanUp();
+	bool Update(float dt);
+
 	bool LoadTIFF(const char* fontPath);
 
 	// Loads a font file from a texture
@@ -52,6 +57,11 @@ public:
 private:
 	// An array to keep track and store all loaded fonts
 	Font fonts[MAX_FONTS];
+
+
+	TTF_Font* font;
+	SDL_Texture* texture;
+	SDL_Rect dstrect;
 };
 
 

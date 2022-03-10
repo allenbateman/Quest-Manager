@@ -4,20 +4,83 @@
 #include "Render.h"
 #include "Log.h"
 #include<string.h>
-#include "SDL_ttf/include/SDL_ttf.h"
+
+
+
+
 
 ModuleFonts::ModuleFonts(bool isEnabled) : Module(isEnabled)
 {
 
 
-	TTF_Init();
-	TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24);
+
 }
 
 ModuleFonts::~ModuleFonts()
 {
 
 }
+
+bool ModuleFonts::Start()
+{
+	SDL_version compiled;
+	SDL_version linked;
+
+	SDL_VERSION(&compiled);
+	SDL_GetVersion(&linked);
+
+	LOG("We compiled against SDL version %u.%u.%u ...\n",
+		compiled.major, compiled.minor, compiled.patch);
+
+	LOG("TTF status %i", TTF_Init());
+	if (TTF_Init() == -1) {
+		LOG("Can't init ttf library");
+		LOG(TTF_GetError());
+	}
+
+	font = TTF_OpenFont("./Assets/GUI/Fonts/RobotoMedium.ttf", 24);
+	if (font == NULL)
+	{
+		LOG("can't load font");
+		LOG(TTF_GetError());
+	}
+
+	SDL_Color color = { 255, 255, 255 };
+	SDL_Surface* surface = TTF_RenderText_Solid(font,
+		"Project2", color);
+
+
+	texture = SDL_CreateTextureFromSurface(app->render->renderer, surface);
+
+	SDL_RenderCopy(app->render->renderer, texture, NULL, NULL);
+	SDL_RenderPresent(app->render->renderer);
+
+	int texW = 2;
+	int texH = 2;
+	SDL_QueryTexture(texture, NULL, NULL, &texW, &texH);
+	dstrect = { 0, 0, texW, texH };
+
+
+	return true;
+}
+
+bool ModuleFonts::CleanUp()
+{
+
+
+	TTF_CloseFont(font);
+	return true;
+}
+
+bool ModuleFonts::Update(float dt)
+{
+
+	app->render->DrawTexture(texture,100, 100, &dstrect, 0.0f, false);
+
+	return true;
+}
+
+
 
 bool ModuleFonts::LoadTIFF(const char* fontPath)
 {
