@@ -24,8 +24,8 @@ GuiManager::~GuiManager() {}
 bool GuiManager::Start()
 {
 
-	mainFont = app->fonts->Load("Assets/GUI/Fonts/Font.png", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890", 1);
-	mainFont = app->fonts->Load("Assets/GUI/Fonts/numbers.png", "1234567890:", 1);
+	//mainFont = app->fonts->Load("Assets/GUI/Fonts/Font.png", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890", 1);
+	//mainFont = app->fonts->Load("Assets/GUI/Fonts/numbers.png", "1234567890:", 1);
 	UItexture = app->tex->Load("Assets/Spritesx16/GUI.png");
 
 	app->audio->LoadFx("Assets/audio/fx/buttonFocus.wav");

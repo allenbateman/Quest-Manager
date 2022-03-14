@@ -93,8 +93,6 @@ bool Scene1::Start()
 	closePanelBttn2->focusedRec = { 66,240,22,22 };
 	closePanelBttn2->pressedRec = { 66,240,22,22 };;
 
-
-	palyerUI = app->tex->Load("Assets/Spritesx16/Sidebar.png");
 	timer = 120000;//2min in millis
 
 
@@ -116,7 +114,7 @@ bool Scene1::PreUpdate()
 // Called each loop iteration
 bool Scene1::Update(float dt)
 {
-    // L02: DONE 3: Request Load / Save when pressing L/S
+
 	if(app->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN || app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		app->LoadGameRequest();
 
@@ -148,9 +146,6 @@ bool Scene1::PostUpdate()
 	app->physics->DrawColliders();
 	SDL_Rect r = { 0,0,1280,48};
 
-	//background
-	app->render->DrawTexture(palyerUI, 0, 0,&r);
-
 	//lives
 	r = { 0,262,32,32 };
 	int x = 49, y = 4;
@@ -162,12 +157,12 @@ bool Scene1::PostUpdate()
 		int min = seconds / 60;
 		std::string  s = std::to_string(min);
 		const char*  txt = s.c_str();
-		app->fonts->BlitText(987, 4, 1, txt);		
-		app->fonts->BlitText(1000, 4, 1, ":");
+		//app->fonts->BlitText(987, 4, 1, txt);		
+		//app->fonts->BlitText(1000, 4, 1, ":");
 
 		s = std::to_string(seconds- (min*60));
 		txt = s.c_str();
-		app->fonts->BlitText(1019, 4, 1, txt);
+		//app->fonts->BlitText(1019, 4, 1, txt);
 
 	pausePanel->Draw();
 	settingsPanel->Draw();

@@ -38,30 +38,27 @@ public:
 	bool CleanUp();
 	bool Update(float dt);
 
-	bool LoadTIFF(const char* fontPath);
+	//Load font
+	int LoadTIFF(const char* fontPath, int fontSize);
 
-	// Loads a font file from a texture
+	//Unload font
+	void UnLoadTIFF(int font_id);
+
+	// Create a surface from font
 	// Returns a font index from the fonts array
-	// Param texturePath	- The path to the texture file
-	// Param characters		- The lookup table. All characters displayed in the same order as the texture
-	// Param rows			- The amount of character rows in the texture
-	int Load(const char* texturePath, const char* characters, uint rows = 1);
-
-	// Removes a font by its index
-	// Unloads the texture and removes it from the fonts array
-	void UnLoad(int fontIndex);
-
-	// Create a surface from text
-	void BlitText(int x, int y, int fontIndex, const char* text) const;
+	// Param rect			- The rectangle where the text will be displayed
+	// Param fontIndex		- The index to refer to a font 
+	// Param text			- The text to dispaly
+	// Param color			- The color to render the text
+	void DrawText(SDL_Rect rect, int fontIndex, const char* text, SDL_Color color) const;
 
 private:
 	// An array to keep track and store all loaded fonts
-	Font fonts[MAX_FONTS];
-
-
-	TTF_Font* font;
+	TTF_Font* fonts[MAX_FONTS];
 	SDL_Texture* texture;
-	SDL_Rect dstrect;
+	SDL_Rect dpsRect;//
+
+	int basicFont;
 };
 
 
