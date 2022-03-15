@@ -30,7 +30,8 @@ public:
 
 
 	SDL_Texture* texture;
-
+	SDL_Texture* textTex;
+	SDL_Rect textRect;
 	SDL_Rect normalRec,disabledRec,focusedRec,pressedRec,selectedRec;
 
 	Animation* hoverAnim, pressedAnim;

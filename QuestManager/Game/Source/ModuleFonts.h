@@ -50,13 +50,21 @@ public:
 	// Param fontIndex		- The index to refer to a font 
 	// Param text			- The text to dispaly
 	// Param color			- The color to render the text
-	void DrawText(SDL_Rect rect, int fontIndex, const char* text, SDL_Color color) const;
+	SDL_Texture* LoadRenderedText(int fontIndex, const char* text, SDL_Color color);
 
 private:
 	// An array to keep track and store all loaded fonts
 	TTF_Font* fonts[MAX_FONTS];
-	SDL_Texture* texture;
 	SDL_Rect dpsRect;//
+
+	//The actual hardware texture
+	SDL_Texture* textTex1;
+	SDL_Texture* textTex2;
+	SDL_Texture* textTex3;
+
+	//Image dimensions
+	int mWidth;
+	int mHeight;
 
 	int basicFont;
 };

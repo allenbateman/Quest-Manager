@@ -10,6 +10,7 @@
 #include "Map.h"
 #include "ModulePhysics.h"
 #include "player.h"
+#include "ModuleFonts.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -60,7 +61,6 @@ bool Scene1::Start()
 	closePanelBttn->focusedRec = { 66,240,22,22 };
 	closePanelBttn->pressedRec = { 66,240,22,22 };
 
-
 	pausePanel = new GuiPanel(false);
 	pausePanel->bounds = { 777,0,266 ,382 };
 	pausePanel->position = { (app->win->GetWidth() * 40 / 100) ,(app->win->GetWidth() * 5 / 100) };
@@ -94,6 +94,8 @@ bool Scene1::Start()
 	closePanelBttn2->pressedRec = { 66,240,22,22 };;
 
 	timer = 120000;//2min in millis
+
+
 
 
 
@@ -167,6 +169,10 @@ bool Scene1::PostUpdate()
 	pausePanel->Draw();
 	settingsPanel->Draw();
 
+
+	//r = { 125,125,100,100 };
+	//
+	//app->fonts->DisplayText(r, 0, "Hola test 2", SDL_Color{ 255,255,255 });
 
 
 	return ret;
