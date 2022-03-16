@@ -7,8 +7,6 @@
 #include "Render.h"
 #include "Window.h"
 #include "Scene1.h"
-#include "Map.h"
-#include "ModulePhysics.h"
 #include "player.h"
 #include "ModuleFonts.h"
 
@@ -36,32 +34,10 @@ bool Scene1::Awake()
 // Called before the first frame
 bool Scene1::Start()
 {
-	app->physics->Start();
 
-	settingsPanel = new GuiPanel(false);
-	settingsPanel->bounds = { 510,0,266 ,382 };
-	settingsPanel->position = { (app->win->GetWidth() * 40 / 100) ,(app->win->GetWidth() * 5 / 100) };
+	LOG("start scene1");
 
-	volumeSlider = (GuiSlider*)settingsPanel->CreateGuiControl(GuiControlType::SLIDER, 8, "Volume", 0, { (settingsPanel->position.x + 147), (settingsPanel->position.y + 99), 83, 8 }, this, { (settingsPanel->position.x + 147), (settingsPanel->position.y + 99), 6, 10 });
-	volumeSlider->SetValue(app->audio->GetMusicVolume());
-	
-	fxSlider = (GuiSlider*)settingsPanel->CreateGuiControl(GuiControlType::SLIDER, 9, "Fx", 0, { (settingsPanel->position.x + 147), (settingsPanel->position.y + 167), 83, 8 }, this, { (settingsPanel->position.x + 147), (settingsPanel->position.y + 167), 6, 10 });
-	fxSlider->SetValue(app->audio->GetMusicVolume());
-
-	vsyncCheckbox = (GuiToggle*)settingsPanel->CreateGuiControl(GuiControlType::CHECKBOX, 10, "vsync", 0, { (settingsPanel->position.x + 147), (settingsPanel->position.y + 231), 22, 22 }, this);
-	vsyncCheckbox->State = app->render->GetVSYNC();
-	
-	fullScreenCheckbox = (GuiToggle*)settingsPanel->CreateGuiControl(GuiControlType::CHECKBOX, 11, "fullScreen", 0, { (settingsPanel->position.x + 147), (settingsPanel->position.y + 295), 22, 22 }, this);
-	fullScreenCheckbox->State = app->win->GetFullScreen();
-	
-	closePanelBttn = (GuiButton*)settingsPanel->CreateGuiControl(GuiControlType::BUTTON, 7, "fullScreen", 0, { (settingsPanel->position.x + 23), (settingsPanel->position.y + 20), 22, 22 }, this);
-	closePanelBttn->normalRec = { 66,240,22,22 };
-	closePanelBttn->selectedRec = { 66,240,22,22 };
-	closePanelBttn->disabledRec = { 66,240,22,22 };
-	closePanelBttn->focusedRec = { 66,240,22,22 };
-	closePanelBttn->pressedRec = { 66,240,22,22 };
-
-	pausePanel = new GuiPanel(false);
+	pausePanel = new GuiPanel(true);
 	pausePanel->bounds = { 777,0,266 ,382 };
 	pausePanel->position = { (app->win->GetWidth() * 40 / 100) ,(app->win->GetWidth() * 5 / 100) };
 	
@@ -85,19 +61,6 @@ bool Scene1::Start()
 	exitButton->texture = app->guiManager->UItexture;
 	exitButton->normalRec = { 170,0,170,60 };
 	exitButton->focusedRec = { 170,60,170,60 };
-	
-	closePanelBttn2 = (GuiButton*)settingsPanel->CreateGuiControl(GuiControlType::BUTTON, 7, "fullScreen", 0, { (pausePanel->position.x + 23), (pausePanel->position.y + 20), 22, 22 }, this);
-	closePanelBttn2->normalRec = { 66,240,22,22 };
-	closePanelBttn2->selectedRec = { 66,240,22,22 };
-	closePanelBttn2->disabledRec = { 66,240,22,22 };
-	closePanelBttn2->focusedRec = { 66,240,22,22 };
-	closePanelBttn2->pressedRec = { 66,240,22,22 };;
-
-	timer = 120000;//2min in millis
-
-
-
-
 
 	return true;
 }
@@ -105,10 +68,6 @@ bool Scene1::Start()
 // Called each loop iteration
 bool Scene1::PreUpdate()
 {
-
-	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		pausePanel->Active = !pausePanel->Active;
-
 
 	return true;
 }
@@ -123,17 +82,7 @@ bool Scene1::Update(float dt)
 	if(app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN || app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		app->SaveGameRequest();
 
-
-	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
-				   app->map->mapData.width, app->map->mapData.height,
-				   app->map->mapData.tileWidth, app->map->mapData.tileHeight,
-				   app->map->mapData.tilesets.count());
-
 	pausePanel->Update(dt);
-	settingsPanel->Update(dt);
-
-	timer -= dt;
-
 
 	return true;
 }
@@ -143,37 +92,7 @@ bool Scene1::PostUpdate()
 {
 	bool ret = true;
 
-	// Draw functions
-	app->map->Draw();
-	app->physics->DrawColliders();
-	SDL_Rect r = { 0,0,1280,48};
-
-	//lives
-	r = { 0,262,32,32 };
-	int x = 49, y = 4;
-
-	r = {57,262,24,32};
-
-	//timer 
-		int seconds =(int) timer / 1000;
-		int min = seconds / 60;
-		std::string  s = std::to_string(min);
-		const char*  txt = s.c_str();
-		//app->fonts->BlitText(987, 4, 1, txt);		
-		//app->fonts->BlitText(1000, 4, 1, ":");
-
-		s = std::to_string(seconds- (min*60));
-		txt = s.c_str();
-		//app->fonts->BlitText(1019, 4, 1, txt);
-
 	pausePanel->Draw();
-	settingsPanel->Draw();
-
-
-	//r = { 125,125,100,100 };
-	//
-	//app->fonts->DisplayText(r, 0, "Hola test 2", SDL_Color{ 255,255,255 });
-
 
 	return ret;
 }
@@ -182,8 +101,6 @@ bool Scene1::PostUpdate()
 bool Scene1::CleanUp()
 {
 	LOG("Disable scene 1");
-	app->map->CleanUp();
-	app->physics->CleanUp();
 	app->audio->StopMusic();
 	return true;
 }
@@ -197,8 +114,6 @@ void Scene1::Enable()
 void Scene1::Disable()
 {
 	LOG("Disable scene 1");
-	app->map->CleanUp();
-	app->physics->Disable();
 }
 
 bool Scene1::LoadState(pugi::xml_node& data)
@@ -227,33 +142,5 @@ bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
 	{
 		app->exit = true;
 	}
-	else if (control->id == settingsButton->id)
-	{
-		settingsPanel->Active = true;
-		pausePanel->Active = false;
-	}
-	else if (control->id == closePanelBttn->id)
-	{
-		settingsPanel->Active = false;
-		pausePanel->Active = true;
-	}
-	else if (control->id == vsyncCheckbox->id)
-	{
-		app->render->SetVSYNC(vsyncCheckbox->State);
-	}
-	else if (control->id == fullScreenCheckbox->id)
-	{
-		app->win->SetFullScreen(fullScreenCheckbox->State);
-	}
-	else if (control->id == volumeSlider->id)
-	{
-		app->audio->SetMusicVolume(volumeSlider->value);
-	}
-	else if (control->id == fxSlider->id)
-	{
-		app->audio->SetFxVolume(fxSlider->value);
-	}
-
-
 	return true;
 }

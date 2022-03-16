@@ -30,12 +30,6 @@
     <ClCompile Include="Source\Render.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ModulePhysics.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Map.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Input.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
@@ -46,9 +40,6 @@
       <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="Source\PerfTimer.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FadeToBlack.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="Source\ModuleFonts.cpp">
@@ -121,13 +112,7 @@
     <ClInclude Include="Source\Render.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ModulePhysics.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Module.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Map.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="Source\Input.h">
@@ -149,9 +134,6 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="Source\p2List.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\FadeToBlack.h">
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="Source\Animation.h">

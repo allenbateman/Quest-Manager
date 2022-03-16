@@ -4,10 +4,7 @@
 #include "Render.h"
 #include "Textures.h"
 #include "Audio.h"
-#include "FadeToBlack.h"
 #include "Scene1.h"
-#include "Map.h"
-#include "ModulePhysics.h"
 #include "GuiManager.h"
 #include "ModuleFonts.h"
 
@@ -28,11 +25,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	render = new Render(true);
 	tex = new Textures(true);
 	audio = new Audio(true);
-	physics = new ModulePhysics(true);
 	guiManager = new GuiManager(true);
 	fonts = new ModuleFonts(true);
-	map = new Map(true);
-	fade = new FadeToBlack(true);
 	scene1 = new Scene1(true);
 
 
@@ -42,13 +36,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(input);
 	AddModule(tex);
 	AddModule(audio);
-	AddModule(map);
-	AddModule(physics);
 	AddModule(fonts);
 	AddModule(guiManager);
-
-
-	AddModule(fade);
 
 	AddModule(scene1);
 
@@ -217,13 +206,9 @@ void App::FinishUpdate()
 
 	float delay =  float(1000 / maxFrameRate) - frameDuration.ReadMs();
 
-//	LOG("F: %f Delay:%f", frameDuration.ReadMs(), delay);
-
-
 	PerfTimer* delayt = new PerfTimer();
 	delayt->Start();
 	if (maxFrameRate > 0 && delay > 0) SDL_Delay(delay);
-//	LOG("Expected %f milliseconds and the real delay is % f", delay, delayt->ReadMs());
 
 	app->win->SetTitle(title);
 }

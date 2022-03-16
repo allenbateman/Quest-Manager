@@ -4,9 +4,7 @@
 #include "Module.h"
 #include "p2List.h"
 #include "Globals.h"
-#include "ModulePhysics.h"
 #include "Animation.h"
-
 #include "GuiButton.h"
 #include "GuiSlider.h"
 #include "GuiPanel.h"
@@ -51,39 +49,18 @@ public:
 
 	bool OnGuiMouseClickEvent(GuiControl* control);
 
-	int KeysToTake = 2;
-	float timer = 0;//millis
 private:
 	SDL_Texture* img;
-	p2List_item<PhysBody*>* collider;
 
-	Animation* currentLivesAnim = nullptr;
-	Animation*	lives2Anim, lives3Anim;
-	uint music;
+	GuiPanel* pausePanel = NULL;
+	GuiButton* resumeButton = NULL;
+	GuiButton* settingsButton = NULL;
+	GuiButton* backToTitleButton = NULL;
+	GuiButton* exitButton = NULL;
+	GuiButton* closePanelBttn2 = NULL;
 
+	GuiPanel* UiPanel = NULL;
 
-
-	//ui
-	GuiPanel* settingsPanel;
-	GuiSlider* volumeSlider;
-	GuiSlider* fxSlider;
-	GuiToggle* vsyncCheckbox;
-	GuiToggle* fullScreenCheckbox;
-	GuiButton* closePanelBttn;
-
-
-
-	GuiPanel* pausePanel;
-	GuiButton* resumeButton;
-	GuiButton* settingsButton;
-	GuiButton* backToTitleButton;
-	GuiButton* exitButton;
-	GuiButton* closePanelBttn2;
-
-	GuiPanel* UiPanel;
-	SDL_Rect lifes,coins,keys;
-
-	SDL_Texture* palyerUI;
 };
 
 #endif // __SCENE1_H__

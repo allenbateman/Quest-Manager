@@ -19,6 +19,9 @@ ModuleFonts::~ModuleFonts()
 
 bool ModuleFonts::Start()
 {
+
+	LOG("start fonts ");
+
 	SDL_version compiled;
 	SDL_version linked;
 
@@ -36,13 +39,17 @@ bool ModuleFonts::Start()
 		LOG(TTF_GetError());
 	}
 
-	basicFont = LoadTIFF("./Assets/GUI/Fonts/RobotoMedium.ttf", 48);
+	for (int i = 0; i < MAX_FONTS; ++i)
+		fonts[i] = nullptr;
 
-	textTex1 = LoadRenderedText(0, "Start", SDL_Color{ 255,155,0 });
+	//This takes in the path to the font file and the point size we want to render at.
+	globalFont = LoadTIFF("./Assets/GUI/Fonts/RobotoMedium.ttf", 48);
+
+	textTex1 = LoadRenderedText(SDL_Rect{0,0,0,0}, 0, "Start", SDL_Color{ 255,155,0 });
 	if (textTex1 == NULL)
 		LOG("Did not load Text texture");
-	textTex2 = LoadRenderedText(0, "Booo", SDL_Color{ 255,155,0 });
-	//textTex3 = LoadRenderedText(0, "Oh no", SDL_Color{ 255,155,255 });
+	//textTex2 = LoadRenderedText(0, "Booo", SDL_Color{ 255,155,0 });
+
 	return true;
 }
 
@@ -51,31 +58,28 @@ bool ModuleFonts::CleanUp()
 	if(textTex1 != NULL)
 	  SDL_DestroyTexture(textTex1);
 	if (textTex2 != NULL)
-		SDL_DestroyTexture(textTex2);
-	//if (textTex3 != NULL)
-	//	SDL_DestroyTexture(textTex3);
+	  SDL_DestroyTexture(textTex2);
+	
+	UnLoadTIFF(globalFont);
 
-	for (uint i = 0; i < MAX_FONTS; i++)
-	{
-		UnLoadTIFF(i);
-	}
+	TTF_Quit();
 	return true;
 }
 
 bool ModuleFonts::Update(float dt)
 {
-	dpsRect = { 0,0,110,100 };
+
 	app->render->DrawTexture(textTex1, 0, 0, &dpsRect, 0.0f, false);
-	dpsRect = { 0,0,150,100 };
-	app->render->DrawTexture(textTex2, 200, 0, &dpsRect, 0.0f, false);
-	//dpsRect = { 450,250,100,100 };
-	//app->render->DrawTexture(textTex3, 0, 0, &dpsRect, 0.0f, false);
-	
+	//dpsRect = { 0,0,150,100 };
+	//app->render->DrawTexture(textTex2, 200, 0, &dpsRect, 0.0f, false);
+
 	return true;
 }
 
 int ModuleFonts::LoadTIFF(const char* fontPath,int fontSize)
 {
+
+	__debugbreak;
 
 	int id = -1;
 	if(fontPath == NULL || fontSize == NULL)
@@ -87,7 +91,7 @@ int ModuleFonts::LoadTIFF(const char* fontPath,int fontSize)
 	id = 0;
 
 	for (; id < MAX_FONTS; ++id)
-		if (fonts[id]== nullptr)
+		if (fonts[id] == nullptr)
 			break;
 
 	if (id == MAX_FONTS)
@@ -106,6 +110,9 @@ int ModuleFonts::LoadTIFF(const char* fontPath,int fontSize)
 
 		return -1;
 	}
+	else {
+		LOG("font loaded succesfully");
+	}
 
 	return id;
 }
@@ -120,12 +127,17 @@ void ModuleFonts::UnLoadTIFF(int font_id)
 	}
 }
 
-SDL_Texture* ModuleFonts::LoadRenderedText(int font_id, const char* text, SDL_Color color)
+SDL_Texture* ModuleFonts::LoadRenderedText(SDL_Rect rect, int font_id, const char* text, SDL_Color color)
 {
+
+	if (fonts[font_id] == NULL)
+	{
+		return nullptr;
+	}
 
 
 	SDL_Surface* surface = TTF_RenderText_Solid(fonts[font_id],text, color);
-	SDL_Texture* tex;
+	SDL_Texture* tex = NULL;
 	if (surface == NULL)
 	{
 		LOG(TTF_GetError());
@@ -137,22 +149,18 @@ SDL_Texture* ModuleFonts::LoadRenderedText(int font_id, const char* text, SDL_Co
 		if (tex == NULL)
 		{
 		   LOG("Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError());		
-		   return tex;
 
 		}else{
+
 			//Get image dimensions
 			mWidth = surface->w;
 			mHeight = surface->h;
-
-			SDL_RenderCopy(app->render->renderer, tex, NULL, NULL);
-			SDL_RenderPresent(app->render->renderer);
-
-			SDL_QueryTexture(tex, NULL, NULL, &mWidth, &mHeight);
-			dpsRect = {0, 0, mWidth, mHeight };
-			return tex;
+			dpsRect = { 0, 0, mWidth, mHeight };
+		
 		}
 		SDL_FreeSurface(surface);
 	}	
+	return tex;
 }
 
 

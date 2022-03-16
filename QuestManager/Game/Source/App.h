@@ -16,10 +16,7 @@ class Input;
 class Render;
 class Textures;
 class Audio;
-class FadeToBlack;
 class Scene1;
-class Map;
-class ModulePhysics;
 class GuiManager;
 class ModuleFonts;
 
@@ -95,10 +92,7 @@ public:
 	Render* render;
 	Textures* tex;
 	Audio* audio;
-	FadeToBlack* fade;
 	Scene1* scene1;
-	Map* map;
-	ModulePhysics* physics;
 	GuiManager* guiManager;
 	ModuleFonts* fonts;
 	
