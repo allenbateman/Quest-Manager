@@ -1,31 +1,57 @@
-﻿  App.cpp
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(55,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(57,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\Log.h(4,1): warning C4005: 'LOG': redefinición de macro
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\Globals.h(5): message : vea la definición anterior de 'LOG'
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\App.cpp(170,27): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\App.cpp(205,14): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\App.cpp(209,47): warning C4244: 'argumento': conversión de 'float' a 'Uint32'; posible pérdida de datos
-  GuiButton.cpp
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(55,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(57,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+﻿  GuiButton.cpp
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(55,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(57,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
   GuiManager.cpp
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(55,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(57,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(55,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(57,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
   GuiPanel.cpp
   GuiSlider.cpp
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(55,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(57,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\GuiSlider.cpp(50,22): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\GuiSlider.cpp(51,5): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\GuiSlider.cpp(161,19): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(55,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(57,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\GuiSlider.cpp(50,22): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\GuiSlider.cpp(51,5): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\GuiSlider.cpp(161,19): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
   GuiToggle.cpp
+  Main.cpp
+  App.cpp
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(55,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(57,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Log.h(4,1): warning C4005: 'LOG': redefinición de macro
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Globals.h(5): message : vea la definición anterior de 'LOG'
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\App.cpp(170,27): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\App.cpp(205,14): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\App.cpp(209,47): warning C4244: 'argumento': conversión de 'float' a 'Uint32'; posible pérdida de datos
+  Audio.cpp
+  Input.cpp
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(55,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(57,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Log.h(4,1): warning C4005: 'LOG': redefinición de macro
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Globals.h(5): message : vea la definición anterior de 'LOG'
   ModuleFonts.cpp
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\ModuleFonts.cpp(83,2): warning C4551: la llamada a la función no tiene lista de argumentos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\ModuleFonts.cpp(84,2): warning C4551: la llamada a la función no tiene lista de argumentos
+  PerfTimer.cpp
+  Player.cpp
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(55,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(57,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Log.h(4,1): warning C4005: 'LOG': redefinición de macro
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Globals.h(5): message : vea la definición anterior de 'LOG'
+  Quest.cpp
+  QuestManager.cpp
+  Render.cpp
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Render.cpp(157,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Render.cpp(158,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
   Scene1.cpp
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(55,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(57,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\Log.h(4,1): warning C4005: 'LOG': redefinición de macro
-C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Game\Source\Globals.h(5): message : vea la definición anterior de 'LOG'
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(55,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(57,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Log.h(4,1): warning C4005: 'LOG': redefinición de macro
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Globals.h(5): message : vea la definición anterior de 'LOG'
+  Textures.cpp
+  Timer.cpp
+  Window.cpp
+  Log.cpp
   Generando código...
-  Game.vcxproj -> C:\Users\allenbn\Documents\GitHub\QuestManager\QuestManager\Build\Debug\Game.exe
+  Compilando...
+  pugixml.cpp
+  Generando código...
+  LINK : no se encontró C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Build\Debug\Game.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
+  Game.vcxproj -> C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Build\Debug\Game.exe
