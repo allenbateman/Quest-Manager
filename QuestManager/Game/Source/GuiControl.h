@@ -7,6 +7,7 @@
 #include "ModuleFonts.h"
 #include "Point.h"
 #include "SString.h"
+#include "Point.h"
 
 #include "SDL/include/SDL.h"
 
@@ -76,14 +77,26 @@ public:
 		observer->OnGuiMouseClickEvent(this);
 	}
 
+	void CenterText(SDL_Rect parent) 
+	{
+		textPosition.x = bounds.x + ((bounds.w - textRect.w) / 2);
+		textPosition.y = bounds.y + ((bounds.h - textRect.h) / 2);
+	}
+
 public:
 
 	uint32 id;
 	GuiControlType type;
 	GuiControlState state;
 
-	const char* text;           // Control text (if required)
+	const char* text;       // Control text (if required)
 	int font;				// font texture index
+	SDL_Texture* textTex;	// Text texture
+	SDL_Rect textRect;		// Text bounds
+	iPoint textPosition;	// Text position (center texture)
+	SDL_Color textColor;	// Text color
+
+
 	SDL_Rect bounds;        // Position and size
 	SDL_Color color;        // Tint color
 

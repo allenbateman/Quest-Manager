@@ -1,4 +1,5 @@
 #include "QuestManager.h"
+#include "Log.h"
 
 QuestManager::QuestManager(bool isActive) : Module(isActive)
 {
@@ -11,34 +12,23 @@ QuestManager::~QuestManager()
 bool QuestManager::Awake(pugi::xml_node&)
 {
 
-	pugi::xml_document questFile;
-	pugi::xml_node config;
-	pugi::xml_node configApp;
+	//pugi::xml_document questFile;
+	//pugi::xml_node config;
+	//pugi::xml_node configApp;
 
-	bool ret = false;
+	//bool ret = false;
 
-	config = LoadConfig(configFile);
+	//config = LoadConfig(questFile);
 
-	if (config.empty() == false)
-	{
-		ret = true;
-		configApp = config.child("app");
+	//if (config.empty() == false)
+	//{
+	//	ret = true;
+	//	configApp = config.child("app");
 
-		title.Create(configApp.child("title").child_value());
-		organization.Create(configApp.child("organization").child_value());
-	}
+	//	//title.Create(configApp.child("title").child_value());
+	//	//organization.Create(configApp.child("organization").child_value());
+	//}
 
-	if (ret == true)
-	{
-		ListItem<Module*>* item;
-		item = modules.start;
-
-		while ((item != NULL) && (ret == true))
-		{
-			ret = item->data->Awake(config.child(item->data->name.GetString()));
-			item = item->next;
-		}
-	}
 
 	return true;
 }
@@ -159,12 +149,19 @@ pugi::xml_node QuestManager::LoadConfig(pugi::xml_document& configFile) const
 {
 	pugi::xml_node ret;
 
-	pugi::xml_parse_result result = configFile.load_file(CONFIG_FILENAME);
+	//pugi::xml_parse_result result = configFile.load_file(QUEST_FILE);
 
-	if (result == NULL) LOG("Could not load xml file: %s. pugi error: %s", CONFIG_FILENAME, result.description());
-	else ret = configFile.child("config");
-
-
-
+	//if (result == NULL) LOG("Could not load xml file: %s. pugi error: %s", QUEST_FILE, result.description());
+	//else ret = configFile.child("config");
 	return ret;
+}
+
+bool QuestManager::LoadState(pugi::xml_node&)
+{
+	return false;
+}
+
+bool QuestManager::SaveState(pugi::xml_node&) const
+{
+	return false;
 }

@@ -41,26 +41,26 @@ bool Scene1::Start()
 	pausePanel->bounds = { 777,0,266 ,382 };
 	pausePanel->position = { (app->win->GetWidth() * 40 / 100) ,(app->win->GetWidth() * 5 / 100) };
 	
-	resumeButton = (GuiButton*)pausePanel->CreateGuiControl(GuiControlType::BUTTON, 6, "Resume", 0, { pausePanel->position.x + 48, pausePanel->position.y + 90,170,60},this);
-	resumeButton->texture = app->guiManager->UItexture;
-	resumeButton->normalRec = { 170,120,170,60 };
-	resumeButton->focusedRec = { 170,180,170,60 };
+	resumeButton = (GuiButton*)pausePanel->CreateGuiButton(6, this, { pausePanel->position.x + 48, pausePanel->position.y + 90,170,60 }, "Resume",1, SDL_Color{32,27,46});
+	resumeButton->texture = app->guiManager->UItexture2;
+	resumeButton->normalRec = { 0,0,170,60 };
+	resumeButton->focusedRec = { 0,119,170,60 };
 	
-	settingsButton = (GuiButton*)pausePanel->CreateGuiControl(GuiControlType::BUTTON, 2, "stteings", 0, { pausePanel->position.x + 48,pausePanel->position.y + 152,170,60 }, this);;
-	settingsButton->texture = app->guiManager->UItexture;
-	settingsButton->normalRec = { 340,0,170,60 };
-	settingsButton->focusedRec = { 340,60,170,60 };
+	settingsButton = (GuiButton*)pausePanel->CreateGuiControl(GuiControlType::BUTTON, 2, { pausePanel->position.x + 48,pausePanel->position.y + 152,170,60 }, this, "Stteings", 0);
+	settingsButton->texture = app->guiManager->UItexture2;
+	settingsButton->normalRec = { 0,0,170,60 };
+	settingsButton->focusedRec = { 0,119,170,60 };
 	
 	
-	backToTitleButton = (GuiButton*)pausePanel->CreateGuiControl(GuiControlType::BUTTON, 5, "backtotitle", 0, { pausePanel->position.x + 48,pausePanel->position.y + 214,170,60 }, this);;
-	backToTitleButton->texture = app->guiManager->UItexture;
-	backToTitleButton->normalRec = { 340,120,170,60 };
-	backToTitleButton->focusedRec = { 340,180,170,60 };
+	backToTitleButton = (GuiButton*)pausePanel->CreateGuiControl(GuiControlType::BUTTON, 5, { pausePanel->position.x + 48,pausePanel->position.y + 214,170,60 }, this, "Backtotitle", 0);
+	backToTitleButton->texture = app->guiManager->UItexture2;
+	backToTitleButton->normalRec = { 0,0,170,60 };
+	backToTitleButton->focusedRec = { 0,119,170,60 };
 	
-	exitButton = (GuiButton*)pausePanel->CreateGuiControl(GuiControlType::BUTTON, 4, "exit", 0, { pausePanel->position.x + 48,pausePanel->position.y + 276,170,60 }, this);;
-	exitButton->texture = app->guiManager->UItexture;
-	exitButton->normalRec = { 170,0,170,60 };
-	exitButton->focusedRec = { 170,60,170,60 };
+	exitButton = (GuiButton*)pausePanel->CreateGuiControl(GuiControlType::BUTTON, 4, { pausePanel->position.x + 48,pausePanel->position.y + 276,170,60 }, this, "Exit", 0);
+	exitButton->texture = app->guiManager->UItexture2;
+	exitButton->normalRec = { 0,0,170,60 };
+	exitButton->focusedRec = { 0,119,170,60 };
 
 	return true;
 }

@@ -13,7 +13,8 @@ class GuiButton : public GuiControl
 {
 public:
 
-	GuiButton(uint32 id, SDL_Rect bounds, const char* text, int fontid);
+	GuiButton(uint32 id, SDL_Rect bounds, const char* text, int fontid, SDL_Color textcolor = {255,255,255});
+	GuiButton(uint32 id, SDL_Rect bounds);
 	virtual ~GuiButton();
 
 	bool Update(float dt);
@@ -23,16 +24,14 @@ public:
 	unsigned int click;
 
 	bool canClick = true;
-	bool drawBasic = false;
-
 
 	int fontPosX,fontPosY;
 
 
 	SDL_Texture* texture;
-	SDL_Texture* textTex;
-	SDL_Rect textRect;
 	SDL_Rect normalRec,disabledRec,focusedRec,pressedRec,selectedRec;
+
+
 
 	Animation* hoverAnim, pressedAnim;
 	Animation* currentAnim;

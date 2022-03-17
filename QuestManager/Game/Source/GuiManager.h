@@ -31,15 +31,13 @@ public:
 
 	//bool OnGuiMouseClickEvent(GuiControl* control);
 
-
-	//void CreateStartMenu();
-	//void CreateSettingsMenu();
-	//void CreatePauseMenu();
-	//void CreateGameOverMenu();
-	//void CreateInGameUI();
-
 	// Additional methods
-	GuiControl* CreateGuiControl(GuiControlType type, int id, const char* text, int fontid, SDL_Rect bounds, Module* observer, SDL_Rect sliderBounds = { 0,0,0,0 });
+	GuiControl* CreateGuiControl(GuiControlType type, int id, SDL_Rect bounds, Module* observer, const char* text ="", int fontid = 0, SDL_Rect sliderBounds = {0,0,0,0});
+	GuiControl* CreateGuiButton(int id, Module* observer, SDL_Rect bounds, const char* text = "", int fontId = 0, SDL_Color textColor = { 255,255,255 });
+	GuiControl* CreateGuiSlider(int id, Module* observer, SDL_Rect bounds,SDL_Rect sliderBounds);
+	GuiControl* CreateGuiCheckBox(int id, Module* observer, SDL_Rect bounds);
+	
+	
 	void DestroyGuiControl(GuiControl* entity);
 	void AddGuiControl(GuiControl* entity);
 
@@ -51,33 +49,12 @@ public:
 	float updateMsCycle = 0.0f;
 	bool doLogic = false;
 
-	SDL_Texture* UItexture;
+	SDL_Texture* UItexture = nullptr;
+	SDL_Texture* UItexture2 = nullptr;
 
 	int mainFont;
 	int numberFont;
 	bool Debug = false;
-
-
-	//GuiButton* startButton;//1
-	//GuiButton* settingsButton;//2
-	//GuiButton* loadButton;//3
-	//GuiButton* exitButton;//4
-	//GuiButton* backToTitleButton;//5
-	//GuiButton* resumeButton;//6
-	//GuiButton* closePanelBttn;//7
-
-	//GuiSlider* volumeSlider;//8
-	//GuiSlider* fxSlider;//9
-	//GuiToggle* vsyncCheckbox;//10
-	//GuiToggle* fullScreenCheckbox;//11
-
-
-	//GuiPanel* startMenuPanel;
-	//GuiPanel* settingsPanel;
-	//GuiPanel* pauseMenuPanel;
-	//GuiPanel* gameOverMenuPanel;
-
-	//GuiPanel* currentActivePanel;
 };
 
 #endif // __GUIMANAGER_H__

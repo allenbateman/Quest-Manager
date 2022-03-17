@@ -37,7 +37,10 @@ public:
 	int LoadTIFF(const char* fontPath, int fontSize);
 
 	//Unload font
-	void UnLoadTIFF(int font_id);
+	void UnloadTIFF(int font_id);
+
+	//Unload all fonts
+	void UnloadAllTIFF();
 
 	// Create a surface from font
 	// Returns a font index from the fonts array
@@ -51,6 +54,8 @@ public:
 	
 	//Globally used font
 	int globalFont;
+	//Font used in menu buttons
+	int menuButtonFont;
 
 private:
 

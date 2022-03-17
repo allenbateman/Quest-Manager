@@ -34,6 +34,7 @@ bool ModuleFonts::Start()
 
 	// initialize the TTF library
 	LOG("TTF status %i", TTF_Init());
+
 	if (TTF_Init() == -1) {
 		LOG("Can't init ttf library");
 		LOG(TTF_GetError());
@@ -43,7 +44,9 @@ bool ModuleFonts::Start()
 		fonts[i] = nullptr;
 
 	//This takes in the path to the font file and the point size we want to render at.
-	globalFont = LoadTIFF("./Assets/GUI/Fonts/RobotoMedium.ttf", 16);
+	globalFont = LoadTIFF("./Assets/GUI/Fonts/RobotoMedium.ttf", 12);
+
+	menuButtonFont = LoadTIFF("./Assets/GUI/Fonts/VT323-Regular.ttf", 60);
 
 	textTex1 = LoadRenderedText(dpsRect, globalFont, "Start", SDL_Color{ 255,155,0 });
 	if (textTex1 == NULL)
@@ -61,7 +64,7 @@ bool ModuleFonts::CleanUp()
 	if (textTex2 != NULL)
 	  SDL_DestroyTexture(textTex2);
 	
-	UnLoadTIFF(globalFont);
+	UnloadAllTIFF();
 
 	TTF_Quit();
 	return true;
@@ -116,13 +119,26 @@ int ModuleFonts::LoadTIFF(const char* fontPath,int fontSize)
 	return id;
 }
 
-void ModuleFonts::UnLoadTIFF(int font_id)
+void ModuleFonts::UnloadTIFF(int font_id)
 {
 	if (font_id >= 0 && font_id < MAX_FONTS && fonts[font_id] != nullptr)
 	{
 		TTF_CloseFont(fonts[font_id]);
 		fonts[font_id] = nullptr;
 		LOG("Successfully Unloaded font_id %d", font_id);
+	}
+}
+
+void ModuleFonts::UnloadAllTIFF()
+{
+	for (int i = 0; i < MAX_FONTS; i++)
+	{
+		if (fonts[i] != nullptr)
+		{
+			TTF_CloseFont(fonts[i]);
+			fonts[i] = nullptr;
+			LOG("Successfully Unloaded font_id %d", i);
+		}
 	}
 }
 
