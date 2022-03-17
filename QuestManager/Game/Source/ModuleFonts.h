@@ -10,18 +10,13 @@
 
 struct SDL_Texture;
 
-struct Font
+struct Text
 {
-	// Lookup table. All characters displayed in the same order as the texture
-	char table[MAX_FONT_CHARS];
-
 	// The font texture
 	SDL_Texture* texture = nullptr;
+	const char* text;
+	SDL_Rect dpsRect;// to store the text texture dimensions
 
-	// Font setup data
-	uint totalLength;
-	uint rows, columns;
-	uint char_w, char_h;
 };
 
 class ModuleFonts : public Module
@@ -46,11 +41,13 @@ public:
 
 	// Create a surface from font
 	// Returns a font index from the fonts array
-	// Param rect			- The rectangle where the text will be displayed
+	// Param rect			- The rectangle where the texture dimensions will be stored
 	// Param fontIndex		- The index to refer to a font 
 	// Param text			- The text to dispaly
 	// Param color			- The color to render the text
-	SDL_Texture* LoadRenderedText(SDL_Rect rect, int fontIndex, const char* text, SDL_Color color);
+	SDL_Texture* LoadRenderedText(SDL_Rect &rect, int font_id, const char* text, SDL_Color color);
+
+	SDL_Texture* LoadRenderedParagraph(SDL_Rect& rect, int font_id, const char* text, SDL_Color color, uint32 wrapedLength);
 	
 	//Globally used font
 	int globalFont;
@@ -61,12 +58,13 @@ private:
 	TTF_Font* fonts[MAX_FONTS];
 
 
-	// To dispaly text
+	// To display text
 	SDL_Rect dpsRect;// to store the text texture dimensions
 	SDL_Texture* textTex1;// to store the actual texture to display
 	int mWidth;//Image dimensions
 	int mHeight;
 
+	SDL_Rect  dpsParagraph;
 
 
 	SDL_Texture* textTex2;

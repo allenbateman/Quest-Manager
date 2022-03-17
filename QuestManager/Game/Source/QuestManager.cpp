@@ -10,8 +10,40 @@ QuestManager::~QuestManager()
 
 bool QuestManager::Awake(pugi::xml_node&)
 {
+
+	pugi::xml_document questFile;
+	pugi::xml_node config;
+	pugi::xml_node configApp;
+
+	bool ret = false;
+
+	config = LoadConfig(configFile);
+
+	if (config.empty() == false)
+	{
+		ret = true;
+		configApp = config.child("app");
+
+		title.Create(configApp.child("title").child_value());
+		organization.Create(configApp.child("organization").child_value());
+	}
+
+	if (ret == true)
+	{
+		ListItem<Module*>* item;
+		item = modules.start;
+
+		while ((item != NULL) && (ret == true))
+		{
+			ret = item->data->Awake(config.child(item->data->name.GetString()));
+			item = item->next;
+		}
+	}
+
 	return true;
 }
+
+
 
 void QuestManager::ActivateQuest(int questID)
 {
@@ -121,4 +153,18 @@ bool QuestManager::GetCompletedQuest(int questID)
 		currentQuest = currentQuest->next;
 	}
 	return false;
+}
+
+pugi::xml_node QuestManager::LoadConfig(pugi::xml_document& configFile) const
+{
+	pugi::xml_node ret;
+
+	pugi::xml_parse_result result = configFile.load_file(CONFIG_FILENAME);
+
+	if (result == NULL) LOG("Could not load xml file: %s. pugi error: %s", CONFIG_FILENAME, result.description());
+	else ret = configFile.child("config");
+
+
+
+	return ret;
 }

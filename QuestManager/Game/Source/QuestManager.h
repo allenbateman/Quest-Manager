@@ -1,6 +1,10 @@
 #include "Module.h"
 #include "List.h"
 #include "Quest.h"
+#include "PugiXml/src/pugixml.hpp"
+
+#define QUEST_FILE "quests.xml"
+
 class QuestManager : public Module {
 
 public:
@@ -8,6 +12,7 @@ public:
 	~QuestManager();
 
 	bool Awake(pugi::xml_node&);
+
 public: 
 
 	static QuestManager questManager;
@@ -38,5 +43,12 @@ public:
 
 	//Get complete quest but not Done (get rewards etc)
 	bool GetCompletedQuest(int questID);
+
+	//Load quest files 
+	pugi::xml_node QuestManager::LoadConfig(pugi::xml_document& configFile) const;
+
+	// Load / Save
+	bool LoadState(pugi::xml_node&);
+	bool SaveState(pugi::xml_node&) const;
 
 };
