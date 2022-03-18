@@ -5,30 +5,20 @@ in your game. It can get very simple or very complex, that is why you want to kn
 so the desing process of the system gets simplified and avoid overcomplicated system desing.
 
 
+## Writing
 
+Before start writing, the best aproach is to set what main parts the storyline, then add some related secondary quests to have a 
+general feling of the game story line. This is usually better with a graphic representation.
 
-`code text `
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
 
 ## Progression
 
 ### Lineal Progression
 
 ### Dynamic Progression
+
+##  Data Structure Desing
+
+## Behavioral Desing
+
+
