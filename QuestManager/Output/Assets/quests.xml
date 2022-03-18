@@ -1,0 +1,15 @@
+<!-- Quests file for the game -->
+<quests_list>
+	<quest title ="Intro" id="0"> 
+		<description>
+			This is the begining\n
+			of your quests manager.
+		</description>
+	</quest>
+	<quest title ="First" id="1">
+		<description>
+			This quest is only available\n
+			after completing the tutorial.
+		</description>
+	</quest>
+</quests_list>

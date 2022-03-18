@@ -11,7 +11,7 @@ public:
 	QuestManager(bool isActive);
 	~QuestManager();
 
-	bool Awake(pugi::xml_node&);
+	bool Awake(pugi::xml_node& config);
 
 public: 
 
@@ -45,10 +45,12 @@ public:
 	bool GetCompletedQuest(int questID);
 
 	//Load quest files 
-	pugi::xml_node QuestManager::LoadConfig(pugi::xml_document& configFile) const;
+	bool QuestManager::Load(const char* path);
 
 	// Load / Save
 	bool LoadState(pugi::xml_node&);
 	bool SaveState(pugi::xml_node&) const;
 
+
+	SString folder;
 };

@@ -3,34 +3,34 @@
 
 QuestManager::QuestManager(bool isActive) : Module(isActive)
 {
+	name.Create("quest_manager");
 }
 
 QuestManager::~QuestManager()
 {
 }
 
-bool QuestManager::Awake(pugi::xml_node&)
+bool QuestManager::Awake(pugi::xml_node& config)
 {
 
-	//pugi::xml_document questFile;
-	//pugi::xml_node config;
-	//pugi::xml_node configApp;
+	LOG("Loading quests file");
+	bool ret = true;
 
-	//bool ret = false;
+	folder.Create(config.child("folder").child_value());
 
-	//config = LoadConfig(questFile);
-
-	//if (config.empty() == false)
-	//{
-	//	ret = true;
-	//	configApp = config.child("app");
-
-	//	//title.Create(configApp.child("title").child_value());
-	//	//organization.Create(configApp.child("organization").child_value());
-	//}
+	LOG(folder.GetString());
+	if (folder == NULL)
+	{
+		LOG("Could not load quest folder");
+	}
+	folder = "Assets/";
+	//Load the quest file, this can be for the hole game or
+	// foreach level load quest file. 
+	Load("quests.xml");
 
 
-	return true;
+
+	return ret;
 }
 
 
@@ -145,14 +145,24 @@ bool QuestManager::GetCompletedQuest(int questID)
 	return false;
 }
 
-pugi::xml_node QuestManager::LoadConfig(pugi::xml_document& configFile) const
+bool QuestManager::Load(const char* path) 
 {
-	pugi::xml_node ret;
+	bool ret = true;
+	SString tmp("%s%s", folder.GetString(), path);
 
-	//pugi::xml_parse_result result = configFile.load_file(QUEST_FILE);
+	LOG("File path: %s", tmp.GetString());
 
-	//if (result == NULL) LOG("Could not load xml file: %s. pugi error: %s", QUEST_FILE, result.description());
-	//else ret = configFile.child("config");
+	pugi::xml_document questsFile;
+	pugi::xml_parse_result result = questsFile.load_file(tmp.GetString());
+
+	if (result == NULL)
+	{
+		LOG("Could not load map xml file %s. pugi error: %s", path, result.description());
+		ret = false;
+	}
+
+	//TODO: load game quests
+
 	return ret;
 }
 

@@ -7,7 +7,7 @@
 #include "Scene1.h"
 #include "GuiManager.h"
 #include "ModuleFonts.h"
-
+#include "QuestManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -25,10 +25,11 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	render = new Render(true);
 	tex = new Textures(true);
 	audio = new Audio(true);
+	questManager = new QuestManager(true);
 	guiManager = new GuiManager(true);
 	fonts = new ModuleFonts(true);
 	scene1 = new Scene1(true);
-
+	
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -38,6 +39,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(fonts);
 	AddModule(guiManager);
+	AddModule(questManager);
 
 	AddModule(scene1);
 

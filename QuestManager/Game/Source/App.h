@@ -19,7 +19,7 @@ class Audio;
 class Scene1;
 class GuiManager;
 class ModuleFonts;
-
+class QuestManager;
 
 class App
 {
@@ -95,7 +95,8 @@ public:
 	Scene1* scene1;
 	GuiManager* guiManager;
 	ModuleFonts* fonts;
-	
+	QuestManager* questManager;
+
 	float dt;
 	bool exit = false;
 
