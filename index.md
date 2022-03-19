@@ -5,7 +5,7 @@ in your game. It can get very simple or very complex, that is why you want to kn
 so the desing process of the system gets simplified and avoid overcomplicated system desing.
 
 
-![https://www.artstation.com/artwork/g5NDx](/questmanager/docs/assets/dynamic.png)
+![https://www.artstation.com/artwork/g5NDx](./docs/assets/sergeygrechanyukfinalsmaller.png)
 
 
 
@@ -26,9 +26,11 @@ There are diferent aproaches to develope the progression of an interactive story
 
 ### Lineal Progression
 
+![https://www.artstation.com/artwork/g5NDx](./docs/assets/lineal.png)
+
 ### Dynamic Progression
 
-
+![https://www.artstation.com/artwork/g5NDx](./docs/assets/dynamic.png)
 
 
 So at this point we should have decided what type of progression our game will have.
