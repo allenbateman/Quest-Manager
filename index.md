@@ -5,7 +5,7 @@ in your game. It can get very simple or very complex, that is why you want to kn
 so the desing process of the system gets simplified and avoid overcomplicated system desing.
 
 
-![https://www.artstation.com/artwork/g5NDx](/QuestManager/docs/assets/dynamic.PNG)
+![https://www.artstation.com/artwork/g5NDx](/questmanager/docs/assets/dynamic.png)
 
 
 
