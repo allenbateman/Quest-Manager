@@ -11,7 +11,7 @@ so the desing process of the system gets simplified and avoid overcomplicated sy
 
 ## Writing
 
-Before start writing, the best aproach is to set what main parts the storyline, then add some related secondary quests to have a 
+Before start writing, the best aproach is to set what are the main parts the storyline, then add some related secondary quests to have a 
 general feling of the game storyline. This is usually better with a graphic representation.
 
 Stories must be crafted in such a way as to seamlessly integrate different medium forms. If done right, viewers forget they’re reading text, 
@@ -25,6 +25,9 @@ There are diferent aproaches to develope the progression of an interactive story
 
 
 ### Lineal Progression
+
+For lineal progression stories the quests are consecutive and dont have a complex code to handle events and keep track of the progress.
+Is very straight forward, one quest after another, even having secondary quest available on each point of the story, not infuencing the main progress. 
 
 ![https://www.artstation.com/artwork/g5NDx](./docs/assets/lineal.png)
 
