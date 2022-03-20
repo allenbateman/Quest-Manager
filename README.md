@@ -21,3 +21,5 @@ CMake Tutorial: https://www.youtube.com/watch?v=wl2Srog-j7I&ab_channel=YansonTec
 Writting stories: https://arcweave.com/
 
 Desing UML: https://lucid.app/documents#/dashboard
+
+https://www.lucidchart.com/blog/types-of-UML-diagrams
