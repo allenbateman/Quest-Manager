@@ -22,7 +22,7 @@ Each form contributes a different and new piece of information and ties in natur
 ## Progression
 
 The quests order and connections will define how the game progresses and evolves. 
-There are diferent aproaches to develope the progression of an interactive story, we can have 
+There are diferent aproaches to develope the progression of an interactive story.
 
 
 ### Lineal Progression
@@ -54,7 +54,26 @@ how many elements we will have. The behaivior is how we manage this data structu
 
 To structure our data we have to define well each component of the system and their functionality.
 
+In this case we will have an ID, a description of the quest and the title, some conditions to complete the quest, prerequisites to havea avilable the quest and a reward.
+Also we will have a state to keep track of te quest progress.
 
+```
+int ID;
+
+String title, description;
+
+bool* conditions;
+
+bool* prerequisites;
+
+State{
+	AVAILABLE,
+	NOT_AVAILABLE,
+	ACTIVE,
+	COMPLETE,
+	DONE
+};
+```
 Important
 
 ## Behavioral Design
