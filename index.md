@@ -1,8 +1,7 @@
-# Intro
 
 A quest manager or quest system is a part of the video game development where you control the storyline and the progression of the chracter
 in your game. It can get very simple or very complex, that is why you want to know how the story and the progression of your game very clear,
-so the desing process of the system gets simplified and avoid overcomplicated system desing.
+so the design process of the system gets simplified and avoid overcomplicated system design.
 
 
 ![https://www.artstation.com/artwork/g5NDx](./docs/assets/sergeygrechanyukfinalsmaller.png)
@@ -35,17 +34,30 @@ Is very straight forward, one quest after another, even having secondary quest a
 
 ### Dynamic Progression
 
+Dynamic storylines are a way to make the user expirience a story from many points of views depending on their actions and choices, increasing replayability.
+This type of progrssion requieres a highly defined design since it can get very complex and extensive.
+This means that for example you could have two different endings depending on the actions in previous quest or just by finding hiden path in the storyline.
+Also imposing many requisits to acces certain quest in the story.
+
 ![example](./docs/assets/dynamic.png)
 
+# Design
 
-So at this point we should have decided what type of progression our game will have.
+At this point we should have decided what type of progression our game will have, leading to design our quest system.
+
+A system basically consist in to parts, the data structure and the behaivior. The data structure is how we organize all the elements
+how many elements we will have. The behaivior is how we manage this data structure and how they comunicate between them and with the rest of the project.
 
 
-##  Data Structure Desing
+
+##  Data Structure Design
+
+To structure our data we have to define well each component of the system and their functionality.
+
 
 Important
 
-## Behavioral Desing
+## Behavioral Design
 
 Important
 
