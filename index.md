@@ -1,7 +1,15 @@
+<<<<<<< Updated upstream
 
 A quest manager or quest system is a part of the video game development where you control the storyline and the progression of the chracter
 in your game. It can get very simple or very complex, that is why you want to know how the story and the progression of your game very clear,
 so the design process of the system gets simplified and avoid overcomplicated system design.
+=======
+# Intro
+
+A quest manager or quest system is a part of the video game development where you control the storyline and the progression of the chracter
+in your game. It can get very simple or very complex, that is why you want to know how the story and the progression of your game very clear,
+so the desing process of the system gets simplified and avoid overcomplicated system desing.
+>>>>>>> Stashed changes
 
 
 ![https://www.artstation.com/artwork/g5NDx](./docs/assets/sergeygrechanyukfinalsmaller.png)
@@ -22,7 +30,11 @@ Each form contributes a different and new piece of information and ties in natur
 ## Progression
 
 The quests order and connections will define how the game progresses and evolves. 
+<<<<<<< Updated upstream
 There are diferent aproaches to develope the progression of an interactive story.
+=======
+There are diferent aproaches to develope the progression of an interactive story, we can have 
+>>>>>>> Stashed changes
 
 
 ### Lineal Progression
@@ -34,6 +46,7 @@ Is very straight forward, one quest after another, even having secondary quest a
 
 ### Dynamic Progression
 
+<<<<<<< Updated upstream
 Dynamic storylines are a way to make the user expirience a story from many points of views depending on their actions and choices, increasing replayability.
 This type of progrssion requieres a highly defined design since it can get very complex and extensive.
 This means that for example you could have two different endings depending on the actions in previous quest or just by finding hiden path in the storyline.
@@ -83,4 +96,16 @@ These UML diagrams visualize how the system behaves and interacts with itself an
 
 In this case we want to update each quest to know when to activate, when its complete, give a reward to the player. 
 And to do that we have to comunicate with the other modules and systems of the program.
+=======
+![example](./docs/assets/dynamic.png)
+
+
+So at this point we should have decided what type of progression our game will have.
+
+
+##  Data Structure Desing
+
+## Behavioral Desing
+
+>>>>>>> Stashed changes
 
