@@ -43,6 +43,10 @@ So at this point we should have decided what type of progression our game will h
 
 ##  Data Structure Desing
 
+Important
+
 ## Behavioral Desing
+
+Important
 
 
