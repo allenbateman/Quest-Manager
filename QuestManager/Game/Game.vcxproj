@@ -106,7 +106,6 @@
     <ClCompile Include="Source\ModuleFonts.cpp" />
     <ClCompile Include="Source\PerfTimer.cpp" />
     <ClCompile Include="Source\Player.cpp" />
-    <ClCompile Include="Source\Quest.cpp" />
     <ClCompile Include="Source\QuestManager.cpp" />
     <ClCompile Include="Source\Render.cpp" />
     <ClCompile Include="Source\Scene1.cpp" />

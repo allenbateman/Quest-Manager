@@ -80,9 +80,6 @@ bool ModuleFonts::Update(float dt)
 
 int ModuleFonts::LoadTIFF(const char* fontPath,int fontSize)
 {
-
-	__debugbreak;
-
 	int id = -1;
 	if(fontPath == NULL || fontSize == NULL)
 	{
@@ -186,7 +183,7 @@ SDL_Texture* ModuleFonts::LoadRenderedParagraph(SDL_Rect& rect, int font_id, con
 		return nullptr;		
 	}
 
-	SDL_Surface* surface = TTF_RenderText_Blended_Wrapped(fonts[font_id], text, SDL_Color{ 255,255,255 }, wrapedLength);
+	SDL_Surface* surface = TTF_RenderText_Blended_Wrapped(fonts[font_id], text, color, wrapedLength);
 	SDL_Texture* tex = nullptr;
 
 	if (surface == NULL)

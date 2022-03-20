@@ -57,9 +57,6 @@
     <ClCompile Include="Source\QuestManager.cpp">
       <Filter>QuestSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Quest.cpp">
-      <Filter>QuestSystem</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -182,6 +179,9 @@
     </Filter>
     <Filter Include="QuestSystem">
       <UniqueIdentifier>{a5ac55bc-c008-49db-b0fb-3d631ca60743}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="QuestSystem\Quests">
+      <UniqueIdentifier>{a1aa0612-9c08-419b-a240-7e01b316f11c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
