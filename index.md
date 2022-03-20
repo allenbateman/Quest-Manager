@@ -48,7 +48,7 @@ At this point we should have decided what type of progression our game will have
 A system basically consist in to parts, the data structure and the behaivior. The data structure is how we organize all the elements
 how many elements we will have. The behaivior is how we manage this data structure and how they comunicate between them and with the rest of the project.
 
-
+![example](./docs/assets/uml.png)
 
 ##  Data Structure Design
 
@@ -58,6 +58,9 @@ To structure our data we have to define well each component of the system and th
 Important
 
 ## Behavioral Design
+
+State is a behavioral design pattern that allows an object to change the behavior when its internal state changes. 
+The pattern extracts state-related behaviors into separate state classes and forces the original object to delegate the work to an instance of these classes, instead of acting on its own.
 
 Important
 
