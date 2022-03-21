@@ -57,6 +57,8 @@ public:
 	//Font used in menu buttons
 	int menuButtonFont;
 
+	int titles;
+
 private:
 
 	// An array to keep track and store all loaded fonts
@@ -70,8 +72,6 @@ private:
 	int mHeight;
 
 	SDL_Rect  dpsParagraph;
-
-
 	SDL_Texture* textTex2;
 
 

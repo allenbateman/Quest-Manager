@@ -1,2 +1,6 @@
-﻿  ModuleFonts.cpp
+﻿  Scene1.cpp
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(55,19): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Animation.h(57,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Log.h(4,1): warning C4005: 'LOG': redefinición de macro
+C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Game\Source\Globals.h(5): message : vea la definición anterior de 'LOG'
   Game.vcxproj -> C:\Users\allen\Documents\GitHub\QuestManager\QuestManager\Build\Debug\Game.exe

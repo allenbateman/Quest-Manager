@@ -58,7 +58,7 @@ bool GuiPanel::Draw()
 		return false;
 
 
-	app->render->DrawTexture(app->guiManager->UItexture,position.x, position.y,&bounds);
+	app->render->DrawTexture(texture,position.x, position.y,&bounds);
 
 	ListItem<GuiControl*>* control = controls.start;
 
@@ -72,6 +72,9 @@ bool GuiPanel::Draw()
 
 bool GuiPanel::CleanUp()
 {
+	delete texture;
+	texture = nullptr;
+
 	ListItem<GuiControl*>* control = controls.start;
 
 	while (control != nullptr)

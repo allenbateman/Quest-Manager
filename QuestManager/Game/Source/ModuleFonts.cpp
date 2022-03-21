@@ -44,15 +44,16 @@ bool ModuleFonts::Start()
 		fonts[i] = nullptr;
 
 	//This takes in the path to the font file and the point size we want to render at.
-	globalFont = LoadTIFF("./Assets/GUI/Fonts/RobotoMedium.ttf", 12);
+	globalFont = LoadTIFF("./Assets/GUI/Fonts/RobotoMedium.ttf", 24);
+	titles = LoadTIFF("./Assets/GUI/Fonts/VT323-Regular.ttf",48);
 
 	menuButtonFont = LoadTIFF("./Assets/GUI/Fonts/VT323-Regular.ttf", 60);
 
-	textTex1 = LoadRenderedText(dpsRect, globalFont, "Start", SDL_Color{ 255,155,0 });
-	if (textTex1 == NULL)
-		LOG("Did not load Text texture");
+	//textTex1 = LoadRenderedText(dpsRect, globalFont, "Start", SDL_Color{ 255,155,0 });
+	//if (textTex1 == NULL)
+	//	LOG("Did not load Text texture");
 
-	textTex2 = LoadRenderedParagraph(dpsParagraph, globalFont, "asdjklfhaskdjfgnklasjdfkljas \ndfañdslfkjaslkdfjlklasdjfasldkfj", SDL_Color{ 255,255,255 },250);
+	//textTex2 = LoadRenderedParagraph(dpsParagraph, globalFont, "asdjklfhaskdjfgnklasjdfkljas \ndfañdslfkjaslkdfj\nlklasdjfasldkfj", SDL_Color{ 255,255,255 },250);
 
 	return true;
 }
@@ -73,8 +74,8 @@ bool ModuleFonts::CleanUp()
 bool ModuleFonts::Update(float dt)
 {
 
-	app->render->DrawTexture(textTex1, 0, 0, &dpsRect);
-	app->render->DrawTexture(textTex2, 100, 0, &dpsParagraph);
+//	app->render->DrawTexture(textTex1, 0, 0, &dpsRect);
+//	app->render->DrawTexture(textTex2, 100, 0, &dpsParagraph);
 	return true;
 }
 

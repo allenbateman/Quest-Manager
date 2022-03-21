@@ -20,6 +20,8 @@ public:
 
 	SDL_Rect bounds;
 	iPoint position;
+	SDL_Texture* texture;
 	bool Active;
+//	List<GuiControl*> controls;
 };
 

@@ -9,6 +9,7 @@
 #include "GuiSlider.h"
 #include "GuiPanel.h"
 #include "GuiToggle.h"
+#include "Quest.h"
 
 struct SDL_Texture;
 
@@ -52,15 +53,11 @@ public:
 private:
 	SDL_Texture* img;
 
-	GuiPanel* pausePanel = NULL;
-	GuiButton* resumeButton = NULL;
-	GuiButton* settingsButton = NULL;
-	GuiButton* backToTitleButton = NULL;
-	GuiButton* exitButton = NULL;
-	GuiButton* closePanelBttn2 = NULL;
+	GuiPanel* questPanel = NULL;
 
-	GuiPanel* UiPanel = NULL;
+	GuiButton* nextButton = NULL;
 
+	ListItem<Quest*>* currentQuest;
 };
 
 #endif // __SCENE1_H__

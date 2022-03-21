@@ -9,6 +9,8 @@
 #include "Scene1.h"
 #include "player.h"
 #include "ModuleFonts.h"
+#include "GuiManager.h"
+#include "QuestManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -35,32 +37,21 @@ bool Scene1::Awake()
 bool Scene1::Start()
 {
 
+	//TODO: Set panel as a gui control -> update all panels from GuiManager -> Panels update all Ui Items
+
 	LOG("start scene1");
 
-	pausePanel = new GuiPanel(true);
-	pausePanel->bounds = { 777,0,266 ,382 };
-	pausePanel->position = { (app->win->GetWidth() * 40 / 100) ,(app->win->GetWidth() * 5 / 100) };
+	questPanel = new GuiPanel(true);
+	questPanel->texture = app->guiManager->UItexture2;
+	questPanel->bounds = { 81,414,558,266 };
+	questPanel->position = { 81,414 };
+
+	nextButton = (GuiButton*)questPanel->CreateGuiButton(6, this, { 332, 610,52,56 });
+	nextButton->texture = app->guiManager->UItexture2;
+	nextButton->normalRec = { 0,297,56,52 };
+	nextButton->focusedRec = { 0,349,56,52 };
 	
-	resumeButton = (GuiButton*)pausePanel->CreateGuiButton(6, this, { pausePanel->position.x + 48, pausePanel->position.y + 90,170,60 }, "Resume",1, SDL_Color{32,27,46});
-	resumeButton->texture = app->guiManager->UItexture2;
-	resumeButton->normalRec = { 0,0,170,60 };
-	resumeButton->focusedRec = { 0,119,170,60 };
-	
-	settingsButton = (GuiButton*)pausePanel->CreateGuiControl(GuiControlType::BUTTON, 2, { pausePanel->position.x + 48,pausePanel->position.y + 152,170,60 }, this, "Stteings", 0);
-	settingsButton->texture = app->guiManager->UItexture2;
-	settingsButton->normalRec = { 0,0,170,60 };
-	settingsButton->focusedRec = { 0,119,170,60 };
-	
-	
-	backToTitleButton = (GuiButton*)pausePanel->CreateGuiControl(GuiControlType::BUTTON, 5, { pausePanel->position.x + 48,pausePanel->position.y + 214,170,60 }, this, "Backtotitle", 0);
-	backToTitleButton->texture = app->guiManager->UItexture2;
-	backToTitleButton->normalRec = { 0,0,170,60 };
-	backToTitleButton->focusedRec = { 0,119,170,60 };
-	
-	exitButton = (GuiButton*)pausePanel->CreateGuiControl(GuiControlType::BUTTON, 4, { pausePanel->position.x + 48,pausePanel->position.y + 276,170,60 }, this, "Exit", 0);
-	exitButton->texture = app->guiManager->UItexture2;
-	exitButton->normalRec = { 0,0,170,60 };
-	exitButton->focusedRec = { 0,119,170,60 };
+	currentQuest = app->questManager->questList->start;
 
 	return true;
 }
@@ -82,7 +73,7 @@ bool Scene1::Update(float dt)
 	if(app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN || app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		app->SaveGameRequest();
 
-	pausePanel->Update(dt);
+	questPanel->Update(dt);
 
 	return true;
 }
@@ -92,7 +83,13 @@ bool Scene1::PostUpdate()
 {
 	bool ret = true;
 
-	pausePanel->Draw();
+	questPanel->Draw();
+
+	if(currentQuest->data->titleTex != NULL)
+		app->render->DrawTexture(currentQuest->data->titleTex, 300, 433, &currentQuest->data->rTitle);
+
+	if (currentQuest->data->descriptionTex != NULL)
+		app->render->DrawTexture(currentQuest->data->descriptionTex, 134, 450, &currentQuest->data->rDescription);
 
 	return ret;
 }
@@ -114,6 +111,7 @@ void Scene1::Enable()
 void Scene1::Disable()
 {
 	LOG("Disable scene 1");
+
 }
 
 bool Scene1::LoadState(pugi::xml_node& data)
@@ -133,14 +131,14 @@ bool Scene1::SaveState(pugi::xml_node& data) const
 
 bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
 {
-	if (control->id == resumeButton->id)
+	if (control->id == nextButton->id)
 	{
-		pausePanel->Active = false;
-
-	}
-	else if (control->id == exitButton->id)
-	{
-		app->exit = true;
+		
+		currentQuest = currentQuest->next;
+		if (currentQuest == nullptr)
+		{
+			currentQuest = app->questManager->questList->start;
+		}
 	}
 	return true;
 }

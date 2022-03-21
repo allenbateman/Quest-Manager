@@ -2,6 +2,8 @@
 #include "List.h"
 #include "Quest.h"
 #include "PugiXml/src/pugixml.hpp"
+#include "App.h"
+#include "ModuleFonts.h"
 
 #define QUEST_FILE "quests.xml"
 
@@ -12,13 +14,12 @@ public:
 	~QuestManager();
 
 	bool Awake(pugi::xml_node& config);
+	bool Start();
 
 public: 
 
-	static QuestManager questManager;
-
-	List<Quest>* questList = new List<Quest>();
-	List<Quest>* currentQuestList = new List<Quest>();
+	List<Quest*>* questList = new List<Quest*>();
+	List<Quest*>* currentQuestList = new List<Quest*>();
 
 	//Activate Quest
 	void ActivateQuest(int questID);
@@ -53,4 +54,5 @@ public:
 
 
 	SString folder;
+	SString questFile;
 };
