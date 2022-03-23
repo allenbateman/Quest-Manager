@@ -19,6 +19,7 @@ public:
 
 	bool Update(float dt);
 	bool Draw(Render* render);
+	bool CleanUp();
 
 	int mouseX, mouseY;
 	unsigned int click;
@@ -27,14 +28,7 @@ public:
 
 	int fontPosX,fontPosY;
 
-
-	SDL_Texture* texture;
 	SDL_Rect normalRec,disabledRec,focusedRec,pressedRec,selectedRec;
-
-
-
-	Animation* hoverAnim, pressedAnim;
-	Animation* currentAnim;
 
 	uint focusedfx, selectedfx;
 	bool playfx = true;

@@ -61,6 +61,11 @@ public:
 		return true;
 	}
 
+	virtual bool CleanUp()
+	{
+		return true;
+	}
+
 	void SetTexture(SDL_Texture* tex)
 	{
 		texture = tex;
@@ -105,6 +110,8 @@ public:
 
 	Module* observer;        // Observer module (it should probably be an array/list)
 	uint soundfx;
+
+	SString name;
 };
 
 #endif // __GUICONTROL_H__

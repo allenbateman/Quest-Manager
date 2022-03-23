@@ -18,6 +18,8 @@ GuiSlider::GuiSlider(uint32 id, SDL_Rect bounds, SDL_Rect Thumb) : GuiControl(Gu
 
 	backgroundRect = {89,240,82,8};
 	thumbRect = {172,240,6,10};
+
+	name.Create("Slider");
 }
 
 GuiSlider::~GuiSlider()
@@ -28,7 +30,7 @@ bool GuiSlider::Update(float dt)
 {
 	if (state != GuiControlState::DISABLED)
 	{
-		// L14: TODO 3: Update the state of the GUiButton according to the mouse position
+		// Update the state of the GUiButton according to the mouse position
 		int mouseX, mouseY;
 		app->input->GetMousePosition(mouseX, mouseY);
 
@@ -146,6 +148,13 @@ bool GuiSlider::Draw(Render* render)
 	default:
 		break;
 	}
+	return true;
+}
+
+bool GuiSlider::CleanUp()
+{
+	delete textTex;
+	delete texture;
 	return true;
 }
 

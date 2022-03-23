@@ -17,10 +17,12 @@ GuiButton::GuiButton(uint32 id, SDL_Rect bounds, const char* text, int fontid, S
 	playfx = true;
 	textTex = app->fonts->LoadRenderedText(textRect, fontid, text, textcolor);
 	CenterText(bounds);
+	name.Create("Button");
 }
 
 GuiButton::GuiButton(uint32 id, SDL_Rect bounds) : GuiControl(GuiControlType::BUTTON, id)
 {
+	name.Create("Button");
 }
 
 GuiButton::~GuiButton()
@@ -147,4 +149,11 @@ bool GuiButton::Draw(Render* render)
 	}
 
 	return false;
+}
+
+bool GuiButton::CleanUp()
+{
+	delete textTex;
+	delete texture;
+	return true;
 }

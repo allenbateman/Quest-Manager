@@ -41,15 +41,7 @@ bool Scene1::Start()
 
 	LOG("start scene1");
 
-	questPanel = new GuiPanel(true);
-	questPanel->texture = app->guiManager->UItexture2;
-	questPanel->bounds = { 81,414,558,266 };
-	questPanel->position = { 81,414 };
 
-	nextButton = (GuiButton*)questPanel->CreateGuiButton(6, this, { 332, 610,52,56 });
-	nextButton->texture = app->guiManager->UItexture2;
-	nextButton->normalRec = { 0,297,56,52 };
-	nextButton->focusedRec = { 0,349,56,52 };
 	
 	currentQuest = app->questManager->questList->start;
 
@@ -73,7 +65,6 @@ bool Scene1::Update(float dt)
 	if(app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN || app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		app->SaveGameRequest();
 
-	questPanel->Update(dt);
 
 	return true;
 }
@@ -82,8 +73,6 @@ bool Scene1::Update(float dt)
 bool Scene1::PostUpdate()
 {
 	bool ret = true;
-
-	questPanel->Draw();
 
 	if(currentQuest->data->titleTex != NULL)
 		app->render->DrawTexture(currentQuest->data->titleTex, 300, 433, &currentQuest->data->rTitle);

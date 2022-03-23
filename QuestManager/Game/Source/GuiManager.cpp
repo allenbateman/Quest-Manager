@@ -6,10 +6,6 @@
 #include "Render.h"
 #include "Audio.h"
 
-#include "GuiButton.h"
-#include "GuiSlider.h"
-#include "GuiToggle.h"
-#include "GuiPanel.h"
 
 
 
@@ -31,78 +27,12 @@ bool GuiManager::Start()
 	app->audio->LoadFx("Assets/audio/fx/buttonPressed.wav");
 	Debug = false;
 
+
+	InitPanels();
+
 	return true;
 }
 
-GuiControl* GuiManager::CreateGuiControl(GuiControlType type, int id, SDL_Rect bounds, Module* observer, const char* text,int fontid, SDL_Rect sliderBounds)
-{
-
-	GuiControl* control = nullptr;
-
-	//Call the constructor according to the GuiControlType
-	switch (type)
-	{
-	case GuiControlType::BUTTON:
-		control = new GuiButton(id, bounds, text, fontid);
-		break;
-	case GuiControlType::SLIDER:
-		control = new GuiSlider(id, bounds, sliderBounds);
-		break;
-	case GuiControlType::CHECKBOX:
-		control = new GuiToggle(id, bounds);
-		break;
-	
-	// More Gui Controls can go here
-
-	default:
-		break;
-	}
-
-	//Set the observer
-	control->SetObserver(observer);
-
-
-	// Created GuiControls are added to the list of controls
-	if (control != nullptr) controls.add(control);
-
-	return control;
-}
-
-GuiControl* GuiManager::CreateGuiButton(int id, Module* observer, SDL_Rect bounds, const char* text, int fontId, SDL_Color textColor)
-{
-	GuiControl* control = nullptr;
-
-	control = new GuiButton(id, bounds, text, fontId,textColor);
-	control->SetObserver(observer);
-
-	if (control != nullptr) controls.add(control);
-
-	return control;
-}
-
-GuiControl* GuiManager::CreateGuiSlider(int id, Module* observer, SDL_Rect bounds, SDL_Rect sliderBounds)
-{
-	GuiControl* control = nullptr;
-
-	control = new GuiSlider(id, bounds, sliderBounds);
-	control->SetObserver(observer);
-
-	if (control != nullptr) controls.add(control);
-
-	return control;
-}
-
-GuiControl* GuiManager::CreateGuiCheckBox(int id, Module* observer, SDL_Rect bounds)
-{
-	GuiControl* control = nullptr;
-
-	control = new GuiToggle(id, bounds);
-	control->SetObserver(observer);
-
-	if (control != nullptr) controls.add(control);
-
-	return control;
-}
 
 bool GuiManager::Update(float dt)
 {	
@@ -128,12 +58,12 @@ bool GuiManager::UpdateAll(float dt, bool doLogic) {
 
 	if (doLogic) {
 
-		ListItem<GuiControl*>* control = controls.start;
+		ListItem<GuiPanel*>* panel = panels.start;
 
-		while (control != nullptr)
+		while (panel != nullptr && panel->data->Active)
 		{
-			control->data->Update(dt);
-			control = control->next;
+			panel->data->Update(dt,doLogic);
+			panel = panel->next;
 		}
 
 	}
@@ -141,14 +71,14 @@ bool GuiManager::UpdateAll(float dt, bool doLogic) {
 
 }
 
-bool GuiManager::Draw() {
+bool GuiManager::PostUpdate() {
 
-	ListItem<GuiControl*>* control = controls.start;
+	ListItem<GuiPanel*>* panel = panels.start;
 
-	while (control != nullptr)
+	while (panel != nullptr && panel->data->Active)
 	{
-		control->data->Draw(app->render);
-		control = control->next;
+		panel->data->Draw();
+		panel = panel->next;
 	}
 
 	return true;
@@ -157,14 +87,40 @@ bool GuiManager::Draw() {
 
 bool GuiManager::CleanUp()
 {
-	ListItem<GuiControl*>* control = controls.start;
+	ListItem<GuiPanel*>* panel = panels.start;
 
-	while (control != nullptr)
+	while (panel != nullptr)
 	{
-		RELEASE(control);
+		panel->data->CleanUp();
+		panel = panel->next;
 	}
 
+	panels.clear();
+
+	delete UItexture;
+	delete UItexture2;
+
+	UItexture = nullptr;
+	UItexture2 = nullptr;
+
 	return true;
+}
+
+void GuiManager::InitPanels()
+{
+	questPanel = new GuiPanel(true);
+	questPanel->texture = UItexture2;
+	questPanel->bounds = { 81,414,558,266 };
+	questPanel->position = { 81,414 };
+
+	app->guiManager->panels.add(questPanel);
+
+	GuiButton* button =(GuiButton*) questPanel->CreateGuiButton(6, this, { 332, 610,52,56 });
+
+	button->texture = UItexture2;
+	button->normalRec = { 0,297,56,52 };
+	button->focusedRec = { 0,349,56,52 };
+
 }
 
 

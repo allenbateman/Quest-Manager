@@ -9,6 +9,7 @@ public:
 
 	bool Update(float dt);
 	bool Draw(Render* render);
+	bool CleanUp();
 
 	int mouseX, mouseY;
 	unsigned int click;
@@ -19,9 +20,6 @@ public:
 	bool State = false;
 
 	int fontPosX, fontPosY;
-
-
-	SDL_Texture* texture;
 
 	SDL_Rect normalRec,selectedRec;
 };
