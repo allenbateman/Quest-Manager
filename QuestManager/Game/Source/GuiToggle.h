@@ -1,5 +1,6 @@
 #pragma once
 #include "GuiControl.h"
+
 class GuiToggle :  public GuiControl
 {
 public:

@@ -13,7 +13,7 @@ GuiPanel::~GuiPanel()
 
 bool GuiPanel::Start()
 {
-	return false;
+	return true;
 }
 
 bool GuiPanel::Update(float dt ,bool doLogic)
@@ -77,73 +77,8 @@ bool GuiPanel::CleanUp()
 
 }
 
-
-GuiControl* GuiPanel::CreateGuiControl(GuiControlType type, int id, SDL_Rect bounds, Module* observer, const char* text, int fontid, SDL_Rect sliderBounds)
+void GuiPanel::OnGuiMouseClickEvent(GuiControl* control)
 {
-
-	GuiControl* control = nullptr;
-
-	//Call the constructor according to the GuiControlType
-	switch (type)
-	{
-	case GuiControlType::BUTTON:
-		control = new GuiButton(id, bounds, text, fontid);
-		break;
-	case GuiControlType::SLIDER:
-		control = new GuiSlider(id, bounds, sliderBounds);
-		break;
-	case GuiControlType::CHECKBOX:
-		control = new GuiToggle(id, bounds);
-		break;
-
-		// More Gui Controls can go here
-
-	default:
-		break;
-	}
-
-	//Set the observer
-	control->SetObserver(observer);
-
-
-	// Created GuiControls are added to the list of controls
-	if (control != nullptr) this->controls.add(control);
-
-	return control;
 }
 
-GuiControl* GuiPanel::CreateGuiButton(int id, Module* observer, SDL_Rect bounds, const char* text, int fontId, SDL_Color textColor)
-{
-	GuiControl* control = nullptr;
 
-	control = new GuiButton(id, bounds, text, fontId, textColor);
-	control->SetObserver(observer);
-
-	if (control != nullptr) this->controls.add(control);
-
-	return control;
-}
-
-GuiControl* GuiPanel::CreateGuiSlider(int id, Module* observer, SDL_Rect bounds, SDL_Rect sliderBounds)
-{
-	GuiControl* control = nullptr;
-
-	control = new GuiSlider(id, bounds, sliderBounds);
-	control->SetObserver(observer);
-
-	if (control != nullptr) this->controls.add(control);
-
-	return control;
-}
-
-GuiControl* GuiPanel::CreateGuiCheckBox(int id, Module* observer, SDL_Rect bounds)
-{
-	GuiControl* control = nullptr;
-
-	control = new GuiToggle(id, bounds);
-	control->SetObserver(observer);
-
-	if (control != nullptr) this->controls.add(control);
-
-	return control;
-}

@@ -15,9 +15,6 @@
     <ClCompile Include="Source\Player.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GuiButton.cpp">
-      <Filter>GUI</Filter>
-    </ClCompile>
     <ClCompile Include="Source\GuiManager.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
@@ -45,17 +42,23 @@
     <ClCompile Include="Source\ModuleFonts.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GuiSlider.cpp">
-      <Filter>GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GuiToggle.cpp">
-      <Filter>GUI</Filter>
-    </ClCompile>
     <ClCompile Include="Source\GuiPanel.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
     <ClCompile Include="Source\QuestManager.cpp">
       <Filter>QuestSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GuiButton.cpp">
+      <Filter>GUI\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GuiSlider.cpp">
+      <Filter>GUI\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GuiToggle.cpp">
+      <Filter>GUI\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\QuestPanel.cpp">
+      <Filter>GUI\Panels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -90,9 +93,6 @@
     </ClInclude>
     <ClInclude Include="Source\Player.h">
       <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GuiButton.h">
-      <Filter>GUI</Filter>
     </ClInclude>
     <ClInclude Include="Source\GuiControl.h">
       <Filter>GUI</Filter>
@@ -139,12 +139,6 @@
     <ClInclude Include="Source\ModuleFonts.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GuiSlider.h">
-      <Filter>GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GuiToggle.h">
-      <Filter>GUI</Filter>
-    </ClInclude>
     <ClInclude Include="Source\GuiPanel.h">
       <Filter>GUI</Filter>
     </ClInclude>
@@ -153,6 +147,18 @@
     </ClInclude>
     <ClInclude Include="Source\Quest.h">
       <Filter>QuestSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiButton.h">
+      <Filter>GUI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiSlider.h">
+      <Filter>GUI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiToggle.h">
+      <Filter>GUI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\QuestPanel.h">
+      <Filter>GUI\Panels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +188,12 @@
     </Filter>
     <Filter Include="QuestSystem\Quests">
       <UniqueIdentifier>{a1aa0612-9c08-419b-a240-7e01b316f11c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Panels">
+      <UniqueIdentifier>{dbde890f-cffe-4b65-8dad-93e92b2af596}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Controls">
+      <UniqueIdentifier>{1bb5da85-d874-41c9-b4f6-a6ab3581650e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -41,7 +41,7 @@ bool Scene1::Start()
 
 	LOG("start scene1");
 
-
+	
 	
 	currentQuest = app->questManager->questList->start;
 

@@ -5,10 +5,7 @@
 #include "SDL/include/SDL.h"
 #include "List.h"
 #include "GuiPanel.h"
-
-
-
-class GuiPanel;
+#include "GuiControl.h"
 
 
 class GuiManager : public Module
@@ -33,8 +30,11 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-
-	void InitPanels();
+	//create ui elements
+	GuiControl* CreateGuiControl(GuiControlType type, int id, SDL_Rect bounds, GuiPanel* observer, const char* text = "", int fontid = 0, SDL_Rect sliderBounds = { 0,0,0,0 });
+	GuiControl* CreateGuiButton(int id, GuiPanel* observer, SDL_Rect bounds, const char* text = "", int fontId = 0, SDL_Color textColor = { 255,255,255 });
+	GuiControl* CreateGuiSlider(int id, GuiPanel* observer, SDL_Rect bounds, SDL_Rect sliderBounds);
+	GuiControl* CreateGuiCheckBox(int id, GuiPanel* observer, SDL_Rect bounds);
 
 public:
 

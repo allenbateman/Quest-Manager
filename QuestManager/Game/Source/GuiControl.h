@@ -3,8 +3,8 @@
 
 #include "Input.h"
 #include "Render.h"
-#include "Module.h"
 #include "ModuleFonts.h"
+#include "GuiPanel.h"
 #include "Point.h"
 #include "SString.h"
 #include "Point.h"
@@ -51,6 +51,10 @@ public:
 		texture = NULL;
 	}
 
+	~GuiControl() {
+
+	}
+
 	virtual bool Update(float dt)
 	{
 		return true;
@@ -72,7 +76,7 @@ public:
 		section = { 0, 0, 0, 0 };
 	}
 
-	void SetObserver(Module* module)
+	void SetObserver(GuiPanel* module)
 	{
 		observer = module;
 	}
@@ -108,7 +112,7 @@ public:
 	SDL_Texture* texture;   // Texture atlas reference
 	SDL_Rect section;       // Texture atlas base section
 
-	Module* observer;        // Observer module (it should probably be an array/list)
+	GuiPanel* observer;     // Observer GuiPanel (it should probably be an array/list)
 	uint soundfx;
 
 	SString name;

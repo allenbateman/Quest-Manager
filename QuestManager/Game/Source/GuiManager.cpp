@@ -6,6 +6,8 @@
 #include "Render.h"
 #include "Audio.h"
 
+#include "QuestPanel.h"
+
 
 
 
@@ -27,8 +29,12 @@ bool GuiManager::Start()
 	app->audio->LoadFx("Assets/audio/fx/buttonPressed.wav");
 	Debug = false;
 
+	GuiPanel* panel;
 
-	InitPanels();
+	panel = new QuestPanel(false);
+
+	panels.add(panel);
+
 
 	return true;
 }
@@ -106,23 +112,77 @@ bool GuiManager::CleanUp()
 	return true;
 }
 
-void GuiManager::InitPanels()
+
+
+GuiControl* GuiManager::CreateGuiControl(GuiControlType type, int id, SDL_Rect bounds, GuiPanel* observer, const char* text, int fontid, SDL_Rect sliderBounds)
 {
-	questPanel = new GuiPanel(true);
-	questPanel->texture = UItexture2;
-	questPanel->bounds = { 81,414,558,266 };
-	questPanel->position = { 81,414 };
 
-	app->guiManager->panels.add(questPanel);
+	GuiControl* control = nullptr;
 
-	GuiButton* button =(GuiButton*) questPanel->CreateGuiButton(6, this, { 332, 610,52,56 });
+	//Call the constructor according to the GuiControlType
+	switch (type)
+	{
+	case GuiControlType::BUTTON:
+		control = new GuiButton(id, bounds, text, fontid);
+		break;
+	case GuiControlType::SLIDER:
+		control = new GuiSlider(id, bounds, sliderBounds);
+		break;
+	case GuiControlType::CHECKBOX:
+		control = new GuiToggle(id, bounds);
+		break;
 
-	button->texture = UItexture2;
-	button->normalRec = { 0,297,56,52 };
-	button->focusedRec = { 0,349,56,52 };
+		// More Gui Controls can go here
 
+	default:
+		break;
+	}
+
+	//Set the observer
+	control->SetObserver(observer);
+
+
+	// Created GuiControls are added to the list of controls
+	if (control != nullptr) observer->controls.add(control);
+
+	return control;
 }
 
+GuiControl* GuiManager::CreateGuiButton(int id, GuiPanel* observer, SDL_Rect bounds, const char* text, int fontId, SDL_Color textColor)
+{
+	GuiControl* control = nullptr;
+
+	control = new GuiButton(id, bounds, text, fontId, textColor);
+	control->SetObserver(observer);
+
+	if (control != nullptr) observer->controls.add(control);
+
+	return control;
+}
+
+GuiControl* GuiManager::CreateGuiSlider(int id, GuiPanel* observer, SDL_Rect bounds, SDL_Rect sliderBounds)
+{
+	GuiControl* control = nullptr;
+
+	control = new GuiSlider(id, bounds, sliderBounds);
+	control->SetObserver(observer);
+
+	if (control != nullptr) observer->controls.add(control);
+
+	return control;
+}
+
+GuiControl* GuiManager::CreateGuiCheckBox(int id, GuiPanel* observer, SDL_Rect bounds)
+{
+	GuiControl* control = nullptr;
+
+	control = new GuiToggle(id, bounds);
+	control->SetObserver(observer);
+
+	if (control != nullptr) observer->controls.add(control);
+
+	return control;
+}
 
 
 

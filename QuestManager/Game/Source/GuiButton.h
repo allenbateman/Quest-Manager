@@ -8,7 +8,6 @@
 #include "SString.h"
 
 
-
 class GuiButton : public GuiControl
 {
 public:
