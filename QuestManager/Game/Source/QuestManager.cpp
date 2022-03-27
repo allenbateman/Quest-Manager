@@ -38,6 +38,13 @@ bool QuestManager::Start()
 	return true;
 }
 
+bool QuestManager::CleanUp()
+{
+	questList->clear();
+	currentQuestList->clear();
+	return true;
+}
+
 
 
 void QuestManager::ActivateQuest(int questID)

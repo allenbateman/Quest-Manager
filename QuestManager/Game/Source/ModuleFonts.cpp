@@ -54,11 +54,7 @@ bool ModuleFonts::Start()
 
 bool ModuleFonts::CleanUp()
 {
-	if(textTex1 != NULL)
-	  SDL_DestroyTexture(textTex1);
-	if (textTex2 != NULL)
-	  SDL_DestroyTexture(textTex2);
-	
+
 	UnloadAllTIFF();
 
 	TTF_Quit();

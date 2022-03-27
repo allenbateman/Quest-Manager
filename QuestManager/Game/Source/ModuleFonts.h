@@ -63,18 +63,6 @@ private:
 
 	// An array to keep track and store all loaded fonts
 	TTF_Font* fonts[MAX_FONTS];
-
-
-	// To display text
-	SDL_Rect dpsRect;// to store the text texture dimensions
-	SDL_Texture* textTex1;// to store the actual texture to display
-	int mWidth;//Image dimensions
-	int mHeight;
-
-	SDL_Rect  dpsParagraph;
-	SDL_Texture* textTex2;
-
-
 };
 
 

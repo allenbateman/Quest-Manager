@@ -2,6 +2,7 @@
 #include "Render.h"
 #include "ModuleFonts.h"
 #include "App.h"
+#include "GuiManager.h"
 #include "Audio.h"
 
 GuiButton::GuiButton(uint32 id, SDL_Rect bounds, const char* text, int fontid, SDL_Color textcolor) : GuiControl(GuiControlType::BUTTON, id)

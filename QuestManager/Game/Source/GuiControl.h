@@ -1,15 +1,19 @@
 #ifndef __GUICONTROL_H__
 #define __GUICONTROL_H__
 
+
+#include "Module.h"
 #include "Input.h"
 #include "Render.h"
 #include "ModuleFonts.h"
-#include "GuiPanel.h"
 #include "Point.h"
 #include "SString.h"
 #include "Point.h"
 
+
 #include "SDL/include/SDL.h"
+
+
 
 enum class GuiControlType
 {
@@ -33,6 +37,8 @@ enum class GuiControlState
 	PRESSED,
 	SELECTED
 };
+
+class GuiPanel;
 
 class GuiControl
 {
@@ -76,9 +82,14 @@ public:
 		section = { 0, 0, 0, 0 };
 	}
 
-	void SetObserver(GuiPanel* module)
+	void SetObserver(Module* module)
 	{
 		observer = module;
+	}
+
+	void SetParent(GuiPanel* panel)
+	{
+		parent = panel;
 	}
 
 	void NotifyObserver()
@@ -112,7 +123,8 @@ public:
 	SDL_Texture* texture;   // Texture atlas reference
 	SDL_Rect section;       // Texture atlas base section
 
-	GuiPanel* observer;     // Observer GuiPanel (it should probably be an array/list)
+	Module* observer;     // Observer GuiManager Module (it should probably be an array/list)
+	GuiPanel* parent;		//Panel where the element is located
 	uint soundfx;
 
 	SString name;

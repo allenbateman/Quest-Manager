@@ -2,6 +2,7 @@
 #include "Render.h"
 #include "ModuleFonts.h"
 #include "App.h"
+#include "GuiManager.h"
 #include "Audio.h"
 
 GuiToggle::GuiToggle(uint32 id, SDL_Rect bounds) : GuiControl(GuiControlType::TOGGLE, id)

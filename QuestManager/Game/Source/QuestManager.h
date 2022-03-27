@@ -15,6 +15,7 @@ public:
 
 	bool Awake(pugi::xml_node& config);
 	bool Start();
+	bool CleanUp();
 
 public: 
 

@@ -1,6 +1,8 @@
 #include "GuiSlider.h"
-#include "App.h"
 #include "Log.h"
+#include "App.h"
+#include "GuiManager.h"
+
 
 GuiSlider::GuiSlider(uint32 id, SDL_Rect bounds, SDL_Rect Thumb) : GuiControl(GuiControlType::SLIDER, id)
 {

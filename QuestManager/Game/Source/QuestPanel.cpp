@@ -14,11 +14,11 @@ QuestPanel::~QuestPanel()
 
 bool QuestPanel::Start()
 {
-	//texture = app->guiManager->UItexture2;
-	//bounds = { 81,414,558,266 };
-	//position = { 81,414 };
+	texture = app->guiManager->UItexture2;
+	bounds = { 81,414,558,266 };
+	position = { 81,414 };
 
-	//app->guiManager->panels.add(this);
+	app->guiManager->panels.add(this);
 
 	//GuiButton* button = (GuiButton*)CreateGuiButton(6, this, { 332, 610,52,56 });
 
