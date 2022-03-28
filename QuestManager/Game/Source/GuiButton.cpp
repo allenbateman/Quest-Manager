@@ -153,7 +153,7 @@ bool GuiButton::Draw(Render* render)
 
 bool GuiButton::CleanUp()
 {
-	delete textTex;
-	delete texture;
+	textTex = nullptr;
+	texture = nullptr;
 	return true;
 }

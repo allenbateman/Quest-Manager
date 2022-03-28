@@ -6,6 +6,8 @@
 #include "Render.h"
 #include "Audio.h"
 
+#include "QuestPanel.h"
+
 
 GuiManager::GuiManager(bool isActive) :Module(isActive)
 {
@@ -23,6 +25,20 @@ bool GuiManager::Start()
 	app->audio->LoadFx("Assets/audio/fx/buttonFocus.wav");
 	app->audio->LoadFx("Assets/audio/fx/buttonPressed.wav");
 	Debug = false;
+
+	questPanel = new QuestPanel(true);
+
+	panels.add(questPanel);
+
+
+	//init panels
+	ListItem<GuiPanel*>* panel = panels.start;
+
+	while (panel != nullptr && panel->data->Active)
+	{
+		panel->data->Start();
+		panel = panel->next;
+	}
 
 
 	return true;
@@ -94,6 +110,23 @@ bool GuiManager::CleanUp()
 
 	UItexture = nullptr;
 	UItexture2 = nullptr;
+
+	return true;
+}
+
+bool GuiManager::OnGuiMouseClickEvent(GuiControl* control)
+{
+
+	ListItem<GuiPanel*>* panel = panels.start;
+
+	while (panel != nullptr && panel->data->Active)
+	{
+		if (control->parent == panel->data)
+		{
+			panel->data->OnGuiMouseClickEvent(control);
+		}
+		panel = panel->next;
+	}
 
 	return true;
 }

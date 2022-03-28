@@ -2,9 +2,7 @@
 #include "App.h"
 #include "Render.h"
 
-#include "GuiButton.h"
-#include "GuiToggle.h"
-#include "GuiSlider.h"
+
 
 GuiPanel::GuiPanel(bool isActive)
 {
@@ -25,15 +23,7 @@ bool GuiPanel::Update(float dt ,bool doLogic)
 	if (!Active)
 		return false;
 
-	UpdateAll(dt, doLogic);
-
-	return true;
-}
-
-bool GuiPanel::UpdateAll(float dt, bool logic)
-{
-
-	if (logic) {
+	if (doLogic) {
 
 		ListItem<GuiControl*>* control = controls.start;
 
@@ -44,6 +34,7 @@ bool GuiPanel::UpdateAll(float dt, bool logic)
 		}
 
 	}
+
 	return true;
 }
 
@@ -67,7 +58,6 @@ bool GuiPanel::Draw()
 
 bool GuiPanel::CleanUp()
 {
-	delete texture;
 	texture = nullptr;
 
 	ListItem<GuiControl*>* control = controls.start;
@@ -75,6 +65,7 @@ bool GuiPanel::CleanUp()
 	while (control != nullptr)
 	{
 		control->data->CleanUp();
+		control = control->next;
 	}
 
 	return true;
@@ -155,8 +146,9 @@ GuiControl* GuiPanel::CreateGuiCheckBox(int id, Module* observer, GuiPanel* pare
 }
 
 
-void GuiPanel::OnGuiMouseClickEvent(GuiControl* control)
+bool GuiPanel::OnGuiMouseClickEvent(GuiControl* control)
 {
+	return true;
 }
 
 

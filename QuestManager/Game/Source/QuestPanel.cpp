@@ -1,7 +1,8 @@
 #include "QuestPanel.h"
+#include "Log.h"
 #include "App.h"
 #include "GuiManager.h"
-#include "Log.h"
+#include "QuestManager.h"
 
 QuestPanel::QuestPanel(bool active) : GuiPanel(active)
 {
@@ -18,17 +19,89 @@ bool QuestPanel::Start()
 	bounds = { 81,414,558,266 };
 	position = { 81,414 };
 
-	app->guiManager->panels.add(this);
+	currentQuest = app->questManager->questList->start;
 
-	//GuiButton* button = (GuiButton*)CreateGuiButton(6, this, { 332, 610,52,56 });
+	nextButton = (GuiButton*)CreateGuiButton(6,app->guiManager,this, { 332, 610,52,56 });
 
-	//button->texture = app->guiManager->UItexture2;
-	//button->normalRec = { 0,297,56,52 };
-	//button->focusedRec = { 0,349,56,52 };
+	nextButton->texture = app->guiManager->UItexture2;
+	nextButton->normalRec = { 0,297,56,52 };
+	nextButton->focusedRec = { 0,349,56,52 };
+	nextButton->pressedRec = { 0,349,56,52 };
+
+
     return true;
 }
 
-void QuestPanel::OnGuiMouseClickEvent(GuiControl* control)
+bool QuestPanel::Update(float dt, bool doLogic)
+{
+	if (!Active)
+		return false;
+
+	if (doLogic) {
+
+		ListItem<GuiControl*>* control = controls.start;
+
+		while (control != nullptr)
+		{
+			control->data->Update(dt);
+			control = control->next;
+		}
+
+	}
+}
+
+bool QuestPanel::Draw()
+{
+	if (!Active)
+		return false;
+
+
+	if(texture != NULL)
+	 app->render->DrawTexture(texture, position.x, position.y, &bounds);
+
+	ListItem<GuiControl*>* control = controls.start;
+
+	while (control != nullptr)
+	{
+		control->data->Draw(app->render);
+		control = control->next;
+	}
+
+
+	if (currentQuest != nullptr && currentQuest->data->titleTex != NULL)
+		app->render->DrawTexture(currentQuest->data->titleTex, 300, 433, &currentQuest->data->rTitle);
+
+	if (currentQuest != nullptr && currentQuest->data->descriptionTex != NULL)
+		app->render->DrawTexture(currentQuest->data->descriptionTex, 134, 450, &currentQuest->data->rDescription);
+
+
+	return true;
+}
+
+bool QuestPanel::CleanUp()
+{
+	ListItem<GuiControl*>* control = controls.start;
+
+	while (control != nullptr)
+	{
+		control->data->CleanUp();
+		control = control->next;
+	}
+	return true;
+}
+
+bool QuestPanel::OnGuiMouseClickEvent(GuiControl* control)
 {
 	LOG("Here");
+	if (control->id == nextButton->id)
+	{
+		currentQuest = currentQuest->next;
+
+		if (currentQuest == nullptr)
+		{
+			currentQuest = app->questManager->questList->start;
+		}
+	}
+
+	return true;
 }

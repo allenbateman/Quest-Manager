@@ -5,10 +5,6 @@
 #include "p2List.h"
 #include "Globals.h"
 #include "Animation.h"
-#include "GuiButton.h"
-#include "GuiSlider.h"
-#include "GuiPanel.h"
-#include "GuiToggle.h"
 #include "Quest.h"
 
 struct SDL_Texture;
@@ -52,12 +48,6 @@ public:
 
 private:
 	SDL_Texture* img;
-
-	GuiPanel* questPanel = NULL;
-
-	GuiButton* nextButton = NULL;
-
-	ListItem<Quest*>* currentQuest;
 };
 
 #endif // __SCENE1_H__

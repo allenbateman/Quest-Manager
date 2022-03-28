@@ -10,7 +10,7 @@
 #include "player.h"
 #include "ModuleFonts.h"
 #include "GuiManager.h"
-#include "QuestManager.h"
+
 
 #include "Defs.h"
 #include "Log.h"
@@ -37,13 +37,10 @@ bool Scene1::Awake()
 bool Scene1::Start()
 {
 
-	//TODO: Set panel as a gui control -> update all panels from GuiManager -> Panels update all Ui Items
-
+	
 	LOG("start scene1");
+	
 
-	
-	
-	currentQuest = app->questManager->questList->start;
 
 	return true;
 }
@@ -74,11 +71,7 @@ bool Scene1::PostUpdate()
 {
 	bool ret = true;
 
-	if(currentQuest->data->titleTex != NULL)
-		app->render->DrawTexture(currentQuest->data->titleTex, 300, 433, &currentQuest->data->rTitle);
 
-	if (currentQuest->data->descriptionTex != NULL)
-		app->render->DrawTexture(currentQuest->data->descriptionTex, 134, 450, &currentQuest->data->rDescription);
 
 	return ret;
 }
@@ -120,14 +113,5 @@ bool Scene1::SaveState(pugi::xml_node& data) const
 
 bool Scene1::OnGuiMouseClickEvent(GuiControl* control)
 {
-	if (control->id == nextButton->id)
-	{
-		
-		currentQuest = currentQuest->next;
-		if (currentQuest == nullptr)
-		{
-			currentQuest = app->questManager->questList->start;
-		}
-	}
 	return true;
 }

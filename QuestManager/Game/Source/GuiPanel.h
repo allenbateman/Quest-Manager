@@ -6,7 +6,9 @@
 #include "SDL/include/SDL.h"
 #include "Point.h"
 #include "GuiControl.h"
-
+#include "GuiButton.h"
+#include "GuiToggle.h"
+#include "GuiSlider.h"
 
 class GuiPanel
 {
@@ -16,12 +18,8 @@ public:
 
 	// Called before the first frame to init all the elemnts of the Panel such as buttons and sliders...*
 	virtual bool Start();
-
-	bool Update(float dt, bool doLogic);
-
-	bool UpdateAll(float dt, bool logic);
-
-	bool Draw();
+	virtual bool Update(float dt, bool doLogic);
+	virtual bool Draw();
 
 	// Called before quitting
 	bool CleanUp();
@@ -33,7 +31,7 @@ public:
 	GuiControl* CreateGuiCheckBox(int id, Module* observer, GuiPanel* parent, SDL_Rect bounds);
 
 	// this funtion will handle events recived on the panel
-	virtual void OnGuiMouseClickEvent(GuiControl* control);
+	virtual bool OnGuiMouseClickEvent(GuiControl* control);
 
 
 
