@@ -7,7 +7,7 @@ class QuestPanel :  public GuiPanel
 {
 
 public:
-	 QuestPanel(bool active);
+	QuestPanel(bool active);
 	~QuestPanel();
 
 
@@ -19,6 +19,8 @@ public:
 	bool OnGuiMouseClickEvent(GuiControl* control) override;
 
 	GuiButton* nextButton;
+	GuiButton* acceptButton;
+	GuiButton* cancelButton;
 
 	ListItem<Quest*>* currentQuest;
 

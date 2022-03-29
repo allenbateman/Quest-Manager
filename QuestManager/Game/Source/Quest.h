@@ -26,7 +26,6 @@ public:
 
 	SDL_Rect rTitle, rDescription;
 
-	//virtual void Update();
 	//// Load / Save
 	//virtual bool LoadState(pugi::xml_node&);
 	//virtual bool SaveState(pugi::xml_node&) const;

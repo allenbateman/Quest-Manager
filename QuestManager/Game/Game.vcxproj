@@ -106,6 +106,7 @@
     <ClCompile Include="Source\ModuleFonts.cpp" />
     <ClCompile Include="Source\PerfTimer.cpp" />
     <ClCompile Include="Source\Player.cpp" />
+    <ClCompile Include="Source\QuestHUD.cpp" />
     <ClCompile Include="Source\QuestManager.cpp" />
     <ClCompile Include="Source\QuestPanel.cpp" />
     <ClCompile Include="Source\Render.cpp" />
@@ -131,6 +132,7 @@
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\PQueue.h" />
     <ClInclude Include="Source\Quest.h" />
+    <ClInclude Include="Source\QuestHUD.h" />
     <ClInclude Include="Source\QuestManager.h" />
     <ClInclude Include="Source\QuestPanel.h" />
     <ClInclude Include="Source\Queue.h" />
